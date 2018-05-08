@@ -19,13 +19,32 @@
 
 /* NAVIGATION section ====================== */
 
-#nav {
-    background: black;
-    height: 30px;
-    width: 964px;
-    border: solid 2px #000;
-    font-weight: bold;
+#nav ul{
+    padding: 5px;
+    list-style: none;
+    text-align: center;
+    background-color: #000;
+    margin: 0;
 }
+
+#nav ul li {
+    display:inline;
+}
+
+#nav ul li a {
+    text-decoration: none;
+    font-family: Cookies;
+    padding: .2em 1em;
+    color: aliceblue;
+    background-color: #000;
+}
+
+    #nav ul li a:hover {
+        color:aqua;
+        background-color: aliceblue;
+    }
+
+
 
 /* SIDEBAR ================================= */
 
@@ -74,4 +93,12 @@
 .test {
     display: block;
     text-align: center;
+}
+
+/*ContentPage Text*/
+
+.contentText {
+    margin: 20px;
+    font-size: 16px;
+    line-height:1.2;
 }
