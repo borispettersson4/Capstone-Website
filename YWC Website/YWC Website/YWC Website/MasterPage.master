@@ -11,28 +11,45 @@
 </head>
 
 <body>
+
     <div id="container">
 
+<!--HEADER-->
         <div class="header">
+
+            <div class="headerText"> 
+                <h1><b>Your Website Title Here</b></h1>
+            </div>
 
         </div>
 
-
+<!--NAVIGATION BAR-->
         <div id="nav">
 
      <ul>
         <li> <a href="/Default.aspx">Home</a>
+        <li> <a href="webpages/Store/Store.aspx">Store</a>
         <li> <a href="webpages/ContactUs/ContactUs.aspx">Contact Us</a>
     </ul>
 
         </div>
 
-
+<!--SIDE BAR-->
         <div class="sidebar">
+
+            <div class="contentText">
+                <h3>
+                <b>
+                This section can be used to display a vareity of data
+                such as : Locations, pictures, social media feed, customer info,
+                or simply be removed for asthetic purposes.
+                </b>
+                </h3>
+            </div>
 
         </div>
 
-
+<!--MAIN CONTENT-->
         <div class="main">
             
             <asp:ContentPlaceHolder id="MainContent1" runat="server">

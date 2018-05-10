@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" %>
 
+
 <script runat="server">
 
 </script>
@@ -20,11 +21,23 @@
      width: 100%;"/>
 -->
 
-You can contact us at the following number :
+You may visit our office building located at Sterling Park 34th Ave.
 
 <br /> <br />   <!--Double Space-->
 
-<h3>(787)-407-5043</h3>
+You can send us an email at:
+
+<br /> <br />   <!--Double Space-->
+
+<h3><b>borisruiz4@gmail.com</b></h3>
+
+<br /> <br />   <!--Double Space-->
+
+You can contact us during openning hours using the following number :
+
+<br /> <br />   <!--Double Space-->
+
+<h3><b>(787)-407-5043</b></h3>
 
 </div>  <!--End of conentText-->
 
