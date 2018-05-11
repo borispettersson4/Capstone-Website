@@ -37,3 +37,4 @@ Broken Dreams/Assets/Scenes/Game Scenes/Test Scenes/1_Starting Map/StartingMap -
 *.suo
 *.ide-wal
 YWC Website/YWC Website/.vs/YWC Website/v15/Server/sqlite3/storage.ide-shm
+*.ide-shm

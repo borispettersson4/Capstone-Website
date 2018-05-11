@@ -11,15 +11,19 @@
 
 <br /> <br />   <!--Double Space-->
 
-<img src="../../Images/Placeholder/petstore.jpg" 
+<img src="../../Images/recursos/homepic.png" 
      style ="margin:0 auto;
      width: 100%;"/>
 
 <br /> <br />   <!--Double Space-->
 
-Here, a description of what the business does. Philosophy of the organization may also go here
-    describing the perks and benefits of society that may be brought by the establishment.
-    Furthermore, news or announcements may be held here in the very front page.
+<!-- Horizontal Line -->
+<hr />    
+
+ <div style="text-align:center">
+<h1 >¿Quienes Somos?</h1>
+</div>
+
 
 </div>  <!--End of conentText-->
 
