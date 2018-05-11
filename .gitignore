@@ -34,3 +34,6 @@ Broken Dreams/Broken Dreams.Editor.csproj
 Broken Dreams/Broken Dreams.Editor.Plugins.csproj
 Broken Dreams/Assets/Scenes/Game Scenes/Test Scenes/1_Starting Map/StartingMap - David.unity.meta
 Broken Dreams/Assets/Scenes/Game Scenes/Test Scenes/1_Starting Map/StartingMap - Dani.unity.meta
+*.suo
+*.ide-wal
+YWC Website/YWC Website/.vs/YWC Website/v15/Server/sqlite3/storage.ide-shm
