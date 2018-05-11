@@ -1,15 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Stories.aspx.cs" Inherits="webpages_Stories_Stories" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" %>
 
-<!DOCTYPE html>
+<script runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
-    </form>
-</body>
-</html>
+</script>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
+</asp:Content>
+
