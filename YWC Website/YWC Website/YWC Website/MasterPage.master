@@ -30,6 +30,10 @@
         <li> <a href="/Default.aspx">Home</a>
         <li> <a href="webpages/Store/Store.aspx">Store</a>
         <li> <a href="webpages/ContactUs/ContactUs.aspx">Contact Us</a>
+        <li> <a href="webpages/Stories/Stories.aspx">Stories</a>
+        <li> <a href="webpages/Gallery/Gallery.aspx">Gallery</a>
+
+
     </ul>
 
         </div>
