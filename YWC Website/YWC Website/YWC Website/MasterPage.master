@@ -16,11 +16,9 @@
 
 <!--HEADER-->
         <div class="header">
-
-            <div class="headerText"> 
-                <h1><b>Your Website Title Here</b></h1>
-            </div>
-
+            <img src="../../Images/Placeholder/dogspanorama.jpg" 
+            style ="margin:0 auto;
+            width: 100%;"/>
         </div>
 
 <!--NAVIGATION BAR-->
@@ -29,11 +27,10 @@
      <ul>
         <li> <a href="/Default.aspx">Home</a>
         <li> <a href="webpages/Store/Store.aspx">Store</a>
+        <li> <a href="webpages/Store/Donations.aspx">Donations</a>
         <li> <a href="webpages/ContactUs/ContactUs.aspx">Contact Us</a>
         <li> <a href="webpages/Stories/Stories.aspx">Stories</a>
         <li> <a href="webpages/Gallery/Gallery.aspx">Gallery</a>
-
-
     </ul>
 
         </div>
@@ -42,13 +39,8 @@
         <div class="sidebar">
 
             <div class="contentText">
-                <h3>
-                <b>
-                This section can be used to display a vareity of data
-                such as : Locations, pictures, social media feed, customer info,
-                or simply be removed for asthetic purposes.
-                </b>
-                </h3>
+             <script src="//www.powr.io/powr.js?external-type=html"></script> 
+ <div class="powr-instagram-feed" id="4c429b49_1526063176"></div>
             </div>
 
         </div>

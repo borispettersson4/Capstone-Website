@@ -10,8 +10,7 @@
 /* HEADER section ========================== */
 
 .header {
-    background: #ffa5a5;
-    height: 100px;
+    height: 200px;
     width: 964px;
     border: solid 2px #000;
     color: black;
@@ -20,10 +19,10 @@
 
 /* NAVIGATION section ====================== */
 
-#nav ul{
+#nav ul {
     padding: 5px;
     list-style: none;
-    text-align: right;
+    text-align: center;
     background-color: #000;
     margin: 0;
 }
@@ -32,18 +31,19 @@
     display:inline;
 }
 
-#nav ul li a {
-    text-decoration: none;
-    font-family: 'Open Sans';
-    padding: .2em 1em;
-    color: aliceblue;
-    background-color: #000;
-}
-
-    #nav ul li a:hover {
-        color:yellow;
-        background-color: black;
+    #nav ul li a {
+        text-decoration: none;
+        font-family: 'Open Sans';
+        padding: .2em 0.65em;
+        color: white;
+        background-color: #f5873f;
+        font-size: 20px;
     }
+
+        #nav ul li a:hover {
+            color: #f5873f;
+            background-color: white;
+        }
 
 
 
