@@ -31,8 +31,6 @@ Click here to donate any amount you wish to Yes We Can-Ine:
 
 <div style ="text-align:center">
 
-
-
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
     <!-- Identify your business so that you can collect the payments. -->

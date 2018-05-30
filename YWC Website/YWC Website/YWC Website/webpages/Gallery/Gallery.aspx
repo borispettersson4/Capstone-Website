@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Title="" Language="C#" MasterPaeFile="~/MasterPage.master" %>
 
 <script runat="server">
 

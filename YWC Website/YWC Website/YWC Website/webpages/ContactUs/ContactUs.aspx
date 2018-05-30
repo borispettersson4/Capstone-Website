@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" %>
 
 
 <script runat="server">
@@ -42,4 +42,3 @@ You can contact us during openning hours using the following number :
 </div>  <!--End of conentText-->
 
 </asp:Content>
-

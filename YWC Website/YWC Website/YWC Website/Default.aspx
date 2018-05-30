@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="_Default" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -26,7 +26,8 @@
 </div>
 
 <div>
-    <p>Somos una organización privada sin fines de lucro, registradas en el departamento de Estado de P.R 
+    <p>
+        Somos una organización privada sin fines de lucro, registradas en el departamento de Estado de P.R 
         desde el ano 2014 bajo el numero de licencia - 345927. Somos un grupo de jóvenes con el interes de 
         poder resolver el problema del abandono, maltrato y sobrepoblacion de perritos en las calles de P.R
     </p>

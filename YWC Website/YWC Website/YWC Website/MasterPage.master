@@ -1,4 +1,5 @@
-﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
+﻿<%@ Master Language="C#" %>
+
 <!DOCTYPE html>
 
 <html> 
