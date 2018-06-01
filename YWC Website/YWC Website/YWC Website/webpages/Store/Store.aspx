@@ -9,6 +9,8 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
     
+    <!-- 
+
 <!--STORE ITEM 1-->
     <div id="box">
         <p
@@ -81,6 +83,7 @@
 
     </div>
 
+-->
 
 </asp:Content>
 
