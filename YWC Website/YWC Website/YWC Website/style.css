@@ -51,7 +51,7 @@
 
 .sidebar {
     float: left;
-    width: 176px;
+    width: 200px;
     height: 1200px;
     background: #99c2f5;
     border-left: solid 2px #000;
@@ -65,7 +65,7 @@
 
 .main {
     float: left;
-    width: 786px;
+    width: 762px;
     height: 1200px;
     background: #e5e4d7;
     border-right: solid 2px #000;
