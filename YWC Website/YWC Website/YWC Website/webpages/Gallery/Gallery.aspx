@@ -11,7 +11,10 @@
 
 <div class="contentText">
 
+    <br /> <br />   <!--Double Space-->
     <div style="text-align:center">
+        <br /> <br />   <!--Double Space-->
+        <br /> <br />   <!--Double Space-->
         <h2>Our Photo Gallery</h2>
         This is a preview of our photo gallery.
     </div>
