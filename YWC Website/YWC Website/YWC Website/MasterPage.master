@@ -19,7 +19,7 @@
         <div class="header">
             <img src="../../Images/Placeholder/dogspanorama.jpg" 
             style ="margin:0 auto;
-            width: 100%;"/>
+            width: 100%;"/> <!--100%-->
         </div>
 
 <!--NAVIGATION BAR-->

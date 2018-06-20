@@ -13,7 +13,7 @@
 
 <br /> <br />   <!--Double Space-->
 
-<img src="../../Images/recursos/homepic.png" 
+<img src="../../Images/recursos/homepic2.png" 
      style ="margin:0 auto;
      width: 100%;"/>
 
