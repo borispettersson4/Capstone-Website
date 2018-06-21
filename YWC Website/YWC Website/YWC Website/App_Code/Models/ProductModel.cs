@@ -4,20 +4,20 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for ProductTypeModel
+/// Summary description for ProductModel
 /// </summary>
-public class ProductTypeModel
+public class ProductModel
 {
 
-    public string InsertProductType(ProductType productType)
+    public string InsertProduct(Product product)
     {
         try
         {
             StoreEntities1 db = new StoreEntities1();
-            db.ProductTypes.Add(productType);
+            db.Products.Add(product);
             db.SaveChanges();
 
-            return productType.Name + "was successfully inserted";
+            return product.Name + "was successfully inserted";
         }
         catch (Exception e)
         {
@@ -25,21 +25,25 @@ public class ProductTypeModel
         }
     }
 
-    public string UpdateProductType(int id, ProductType productType)
+    public string UpdateProduct(int id, Product product)
     {
         try
         {
             StoreEntities1 db = new StoreEntities1();
 
             //Fetch an object from db
-            ProductType p = db.ProductTypes.Find(id);
+            Product p = db.Products.Find(id);
 
             //Replace the data in db
-            p.Name = productType.Name;
+            p.Name = product.Name;
+            p.Price = product.Price;
+            p.TypeId = product.TypeId;
+            p.Description = product.Description;
+            p.Image = product.Image;
 
             db.SaveChanges();
 
-            return productType.Name + "was successfully updated";
+            return product.Name + "was successfully updated";
         }
         catch (Exception e)
         {
@@ -47,18 +51,18 @@ public class ProductTypeModel
         }
     }
 
-    public string DeleteProductType(int id)
+    public string DeleteProduct(int id)
     {
         try
         {
             StoreEntities1 db = new StoreEntities1();
-            ProductType productType = db.ProductTypes.Find(id);
+            Product product = db.Products.Find(id);
 
-            db.ProductTypes.Attach(productType);
-            db.ProductTypes.Remove(productType);
+            db.Products.Attach(product);
+            db.Products.Remove(product);
             db.SaveChanges();
 
-            return productType.Name + "was successfully deleted";
+            return product.Name + "was successfully deleted";
         }
         catch (Exception e)
         {
