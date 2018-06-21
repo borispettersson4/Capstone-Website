@@ -4,7 +4,8 @@
 
 #container {
     width: 968px; /*968px*/
-    margin: 0px auto;
+    margin-top: 0px;
+    margin-left: 140px;
 }
 
 /* HEADER section ========================== */
@@ -66,6 +67,7 @@
 /* MAIN ========================================= */
 
 .main {
+
     float: left;
     width: 1080px; /*1030/968/762px*/
     height: 2200px; /*1200px*/
@@ -119,12 +121,6 @@
     line-height:1.2;
 }
 
-.radio {
-    border-radius: 5px;
-    align-content:center;
-    text-align:center;
-}
-
 /*header Text*/
 
 .headerText {
@@ -155,4 +151,3 @@
 {
     color: white;
 }
-
