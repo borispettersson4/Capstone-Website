@@ -11,17 +11,28 @@
 
 <h1> Bienvenidos</h1>
 
-<br /> <br />   <!--Double Space-->
+<br /> <!--Single Space-->
 
-<img src="../../Images/recursos/homepic2.png" 
+<img src="../../Images/recursos/homepic3.png" 
      style ="margin:0 auto;
      width: 100%;"/>
 
-<br /> <br />   <!--Double Space-->
+<br /> <br />  <!--2 Space-->
+<p style="text-align:center">To see another picture select press below</p>
+<!--2 Radio Button to see picture-->
+<div class="radio">
+<form action="">
+  <input type="radio" name="pic" value="homepic3">
+  <input type="radio" name="pic" value="homepic4">
+  <input type="radio" name="pic" value="homepic5"> 
+  <input type="radio" name="pic" value="homepic6"> 
+</form>
+</div>
 
+<br /> <br />  <!--2 Space-->
 
 <hr /> <!-- Horizontal Line -->    
-
+<br /> <!--1 Space-->
 <!-- H1 Description about the website-->
  <div style="text-align:center">
 <h1 >¿Quienes Somos?</h1>
