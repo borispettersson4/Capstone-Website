@@ -18,13 +18,17 @@
         return p;
     }
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         #form1 {
-            margin-left: 26px;
-            margin-top: 34px;
+            margin-left: 20px;
+            margin-top: 20px;
         }
     </style>
 </asp:Content>
