@@ -5,34 +5,98 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent1" Runat="Server">
 
+<!--Javascript Programming -->
+<script type="text/javascript">
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n)
+{
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+
+</script>
+
 <div class="contentText">
 
 <br /> <br />   <!--Double Space-->
 
 <h1> Bienvenidos</h1>
 
-<br /> <!--Single Space-->
+<br /> 
 
+<!--Single Space-->
+<!-- Default picture
 <img src="../../Images/recursos/homepic3.png" 
      style ="margin:0 auto;
      width: 100%;"/>
+-->
 
 <br /> <br />  <!--2 Space-->
-<p style="text-align:center">To see another picture select press below</p>
-<!--2 Radio Button to see picture-->
-<div class="radio">
-<form action="">
-  <input type="radio" name="pic" value="homepic3">
-  <input type="radio" name="pic" value="homepic4">
-  <input type="radio" name="pic" value="homepic5"> 
-  <input type="radio" name="pic" value="homepic6"> 
-</form>
+
+<!--2 Radio Button to see picture-->    
+<br>
+
+<!--    -->
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="../../Images/recursos/homepic3.png" style="width:100%">
+  <div class="text">Caption Text</div>
 </div>
 
-<br /> <br />  <!--2 Space-->
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="../../Images/recursos/homepic4.png" style="width:100%">
+  <div class="text">Caption Two</div>
+</div>
 
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="../../Images/recursos/homepic5.png" style="width:100%">
+  <div class="text">Caption Three</div>
+</div>
+
+<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<p style="text-align:center">To see another picture select press below</p>
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+
+<br /> <br />  <!--2 Space-->
 <hr /> <!-- Horizontal Line -->    
 <br /> <!--1 Space-->
+
 <!-- H1 Description about the website-->
  <div style="text-align:center">
 <h1 >¿Quienes Somos?</h1>
