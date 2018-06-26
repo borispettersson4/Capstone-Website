@@ -17,7 +17,7 @@ public class CartModel
             db.Carts.Add(cart);
             db.SaveChanges();
 
-            return cart.DatePurchased + "was successfully inserted";
+            return cart.DatePurchased + " was successfully inserted";
         }
         catch (Exception e)
         {
@@ -43,7 +43,7 @@ public class CartModel
 
             db.SaveChanges();
 
-            return cart.DatePurchased + "was successfully updated";
+            return cart.DatePurchased + " was successfully updated";
         }
         catch (Exception e)
         {
@@ -62,7 +62,7 @@ public class CartModel
             db.Carts.Remove(cart);
             db.SaveChanges();
 
-            return cart.DatePurchased + "was successfully deleted";
+            return cart.DatePurchased + " was successfully deleted";
         }
         catch (Exception e)
         {

@@ -27,8 +27,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <style type="text/css">
         #form1 {
-            margin-left: 20px;
-            margin-top: 20px;
+            margin-left: 26px;
+            margin-top: 34px;
         }
     </style>
 </asp:Content>
@@ -38,7 +38,7 @@
         <p>
             &nbsp;Category Name :</p>
         <p>
-            <asp:TextBox ID="textName" runat="server"></asp:TextBox>
+            <asp:TextBox ID="textName" runat="server" Width="200px"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="addButton" runat="server" Text="Add Category" OnClick="addButton_Click" />
@@ -48,4 +48,3 @@
         </p>
     </form>
 </asp:Content>
-

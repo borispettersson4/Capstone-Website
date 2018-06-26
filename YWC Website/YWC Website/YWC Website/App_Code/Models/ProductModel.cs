@@ -17,7 +17,7 @@ public class ProductModel
             db.Products.Add(product);
             db.SaveChanges();
 
-            return product.Name + "was successfully inserted";
+            return product.Name + " was successfully inserted";
         }
         catch (Exception e)
         {
@@ -43,7 +43,7 @@ public class ProductModel
 
             db.SaveChanges();
 
-            return product.Name + "was successfully updated";
+            return product.Name + " was successfully updated";
         }
         catch (Exception e)
         {
@@ -62,7 +62,7 @@ public class ProductModel
             db.Products.Remove(product);
             db.SaveChanges();
 
-            return product.Name + "was successfully deleted";
+            return product.Name + " was successfully deleted";
         }
         catch (Exception e)
         {

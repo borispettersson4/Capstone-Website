@@ -17,7 +17,7 @@ public class ProductTypeModel
             db.ProductTypes.Add(productType);
             db.SaveChanges();
 
-            return productType.Name + "was successfully inserted";
+            return productType.Name + " was successfully inserted";
         }
         catch (Exception e)
         {
@@ -39,7 +39,7 @@ public class ProductTypeModel
 
             db.SaveChanges();
 
-            return productType.Name + "was successfully updated";
+            return productType.Name + " was successfully updated";
         }
         catch (Exception e)
         {
@@ -58,7 +58,7 @@ public class ProductTypeModel
             db.ProductTypes.Remove(productType);
             db.SaveChanges();
 
-            return productType.Name + "was successfully deleted";
+            return productType.Name + " was successfully deleted";
         }
         catch (Exception e)
         {
