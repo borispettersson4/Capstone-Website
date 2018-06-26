@@ -68,9 +68,9 @@
 
 .main {
 
-    float: left;
+    /* float: left; */
     width: 1080px; /*1030/968/762px*/
-    height: 2200px; /*1200px*/
+    min-height: 400px; /*1200px*/
     background: #e5e4d7;
     /*border-right: solid 2px #000;*/
     /*border-left: solid 2px #000;*/

@@ -44,3 +44,4 @@ YWC Website/YWC Website/.vs/YWC Website/v15/Server/sqlite3/storage.ide-shm
 YWC Website/YWC Website/.vs/YWC Website/v15/Server/sqlite3/storage.ide-shm
 *.ide-wal
 YWC Website/YWC Website/.vs/config/applicationhost.config
+*.lock
