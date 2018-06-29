@@ -6,7 +6,52 @@
     {
         //Only load images when opened for the first time
         if (!IsPostBack)
+        {
             getImages();
+
+            if (!String.IsNullOrWhiteSpace(Request.QueryString["id"]))
+            {
+                int id = Convert.ToInt32(Request.QueryString["id"]);
+                FillPage(id);
+            }
+        }
+    }
+
+    protected void buttonAdd_Click(object sender, EventArgs e)
+    {
+        ProductModel productModel = new ProductModel();
+        Product product = createProduct();
+
+        //Check if editing
+        if (!String.IsNullOrWhiteSpace(Request.QueryString["id"]))
+        {
+            //ID Exists - update row
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            labelResult.Text = productModel.UpdateProduct(id,product);
+        }
+        else
+        {
+            //ID does not exist - create new row
+            labelResult.Text = productModel.InsertProduct(product);
+        }
+    }
+
+    private void FillPage(int id)
+    {
+        //Get all data from DB to Page
+        ProductModel productmodel = new ProductModel();
+        Product product = productmodel.GetProduct(id);
+
+        //Fill Textboxes
+        textDescription.Text = product.Description;
+        textName.Text = product.Name;
+        textPrice.Text = product.Price.ToString();
+
+        //Fill dropdown list
+        dropDownImage.SelectedValue = product.Image;
+        dropDownType.SelectedValue = product.TypeId.ToString();
+
+
     }
 
     private void getImages()
@@ -46,14 +91,6 @@
         product.Image = dropDownImage.SelectedValue;
 
         return product;
-    }
-
-    protected void buttonAdd_Click(object sender, EventArgs e)
-    {
-        ProductModel productModel = new ProductModel();
-        Product product = createProduct();
-
-        labelResult.Text = productModel.InsertProduct(product);
     }
 
 </script>
