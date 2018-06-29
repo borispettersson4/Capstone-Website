@@ -70,4 +70,55 @@ public class ProductModel
         }
     }
 
+    public Product GetProduct(int id)
+    {
+        try
+        {
+            using (StoreEntities1 db = new StoreEntities1())
+            {
+                Product product = db.Products.Find(id);
+                return product;
+            }
+        }
+        catch(Exception)
+        {
+            return null;
+        }
+    }
+
+    public List<Product> GetAllProducts()
+    {
+        try
+        {
+            using (StoreEntities1 db = new StoreEntities1())
+            {
+                List<Product> products = (from x in db.Products
+                                          select x).ToList();
+                return products;
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    public List<Product> GetAllProductsByType(int typeId)
+    {
+        try
+        {
+            using (StoreEntities1 db = new StoreEntities1())
+            {
+                List<Product> products = (from x in db.Products
+                                          where x.TypeId == typeId
+                                          select x).ToList();
+                return products;
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
 }
