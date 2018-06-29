@@ -2,6 +2,10 @@
     margin: 0px;
 }
 
+a{
+    color:chocolate;
+}
+
 #container {
     width: 968px; /*968px*/
     margin-top: 0px;
@@ -11,7 +15,7 @@
 /* HEADER section ========================== */
 
 .header {
-    height: 200px;
+    height: 200px;/*200px*/
     width: 1080px; /*1030/ 968px/964px*/
     border: solid 2px #000;
     color: black;
@@ -70,7 +74,7 @@
 
     float: left;
     width: 1080px; /*1030/968/762px*/
-    height: 2200px; /*1200px*/
+    height: 4000px; /*2200px,1200px*/
     background: #e5e4d7;
     /*border-right: solid 2px #000;*/
     /*border-left: solid 2px #000;*/
@@ -94,7 +98,7 @@
     font-size: 95%;
     padding: 10px;
     margin: 20px;
-    width: 1020px;    /*968/280px*/
+    width: 1020px;    /*1020px,968px/280px*/
     color: white;
 }
 
@@ -120,6 +124,8 @@
     font-size: 16px;
     line-height:1.2;
 }
+
+
 
 /*header Text*/
 
@@ -160,6 +166,32 @@
 
 
 
+
+/*Column*/
+.column {
+    float: left;
+    width: 33.33%;/*33.33%*/
+    padding: 4px;/*5px*/
+    margin-right: 15.87%;/*7%*/
+}
+
+/*COLUMNA PARA ALINEAR LOS LINKS*/
+.column1 {
+    float: left;
+    margin-right: 44.60%; /*7%*/
+    text-align:center;
+    align-content:center;
+    font-size:inherit;
+    font-style:oblique;
+    color:brown;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 
 /* Slideshow container */
@@ -265,3 +297,6 @@
         font-size: 11px
     }
 }
+
+
+/*Para botones de facebook y de instagram*/
