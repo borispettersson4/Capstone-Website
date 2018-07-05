@@ -71,7 +71,7 @@ a {
 /* MAIN ========================================= */
 
 .main {
-    float: left;
+  
     width: 1080px; /*1030/968/762px*/
     height: 4000px; /*2200px,1200px*/
     background: #e5e4d7;
