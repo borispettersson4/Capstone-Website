@@ -6,6 +6,34 @@ a {
     color: chocolate;
 }
 
+#ContentPlaceHolder1_pnlProducts div{
+
+    float: left;
+    width: 250px;
+    height: 250px;
+    text-align:center;
+}
+
+.productImage{
+    width: 150px;
+    height: 150px;
+    vertical-align: central;
+    padding:10px;
+    border-radius: 50px;
+    -moz-border-radius:50px;
+    -webkit-border-radius:50px;
+}
+
+.productName{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.productPrice {
+    font-family: Arial,Arial, Helvetica, sans-serif;
+    color: #FFB600;
+}
+
 #container {
     width: 968px; /*968px*/
     margin-top: 0px;
@@ -34,22 +62,22 @@ a {
     margin: 0;
 }
 
-    #nav ul li {
+#nav ul li {
         display: inline;
     }
 
-        #nav ul li a {
-            text-decoration: none;
-            font-family: 'Open Sans';
-            padding: .2em 0.65em;
-            color: white;
-            background-color: #f5873f;
-            font-size: 20px;
+#nav ul li a {
+    text-decoration: none;
+    font-family: 'Open Sans';
+    padding: .2em 0.65em;
+    color: white;
+    background-color: #f5873f;
+    font-size: 20px;
         }
 
-            #nav ul li a:hover {
-                color: #f5873f;
-                background-color: white;
+#nav ul li a:hover {
+    color: #f5873f;
+    background-color: white;
             }
 
 
@@ -145,24 +173,20 @@ a {
     font: bold;
 }
 
-    #button a {
+#button a {
         text-decoration: none;
         font-family: 'Open Sans';
         padding: .2em 1em;
         color: black;
     }
 
-        #button a:hover {
+#button a:hover {
             color: white;
         }
 /* radio button in center*/
 .radiobutton {
     text-align: center;
 }
-
-
-
-
 
 /*Column*/
 .column {
