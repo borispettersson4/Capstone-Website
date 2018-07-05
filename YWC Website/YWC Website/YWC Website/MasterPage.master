@@ -27,7 +27,7 @@
 
      <ul>
         <li> <a href="/Default.aspx">Home</a>
-        <li> <a href="/webpages/Store/Store.aspx">Store</a>
+        <li> <a href="/webpages/Store/Public/Store.aspx">Store</a>
         <li> <a href="/webpages/Donation/Donation.aspx">Donations</a>
         <li> <a href="/webpages/ContactUs/ContactUs.aspx">Contact Us</a>
         <li> <a href="/webpages/Stories/Stories.aspx">Stories</a>
