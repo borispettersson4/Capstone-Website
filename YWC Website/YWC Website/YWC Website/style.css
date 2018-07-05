@@ -291,7 +291,7 @@ a {
     }
 }
 
-#ContentPlaceHolder1_pnlProducts div {
+#MainContent1_panelProducts div {
     float: left;
     width: 250px;
     height: 250px;
@@ -299,6 +299,8 @@ a {
 }
 
 .productImage {
+    position: relative;
+    z-index: 99;
     width: 150px;
     height: 150px;
     vertical-align: central;
@@ -316,6 +318,34 @@ a {
 .productPrice {
     font-family: Arial,Arial, Helvetica, sans-serif;
     color: #FFB600;
+}
+
+.detailsImage {
+    width:400px;
+    height:400px;
+    margin-right:20px;
+}
+
+.detailsDescription{
+    text-align:start;
+    width:400px;
+    font-style:italic;
+}
+
+.detailsPrice{
+    font-size:24px;
+    font-style:bold;
+}
+
+.button{
+    padding:10px;
+    margin:10px;
+    color:#ffffff;
+    border:0;
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    clear:both;
+    background: repeating-linear-gradient(to bottom,darkgreen,green);
 }
 
 

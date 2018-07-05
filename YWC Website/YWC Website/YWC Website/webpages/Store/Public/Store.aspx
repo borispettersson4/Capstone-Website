@@ -27,7 +27,7 @@
                 //Set Values to Items
                 imageButton.ImageUrl = "~/Images/Products/" + product.Image;
                 imageButton.CssClass = "productImage";
-                imageButton.PostBackUrl = "~/Pages/Product.aspx?id=" + product.Id;
+                imageButton.PostBackUrl = "~/webpages/Store/Public/Product.aspx?id=" + product.Id;
 
                 labelName.Text = product.Name;
                 labelName.CssClass = "productName";
@@ -68,6 +68,9 @@
         <asp:Panel ID="panelProducts" runat="server">
         </asp:Panel>
     </form>
+
+    <!--Space Compensator-->
+    <p style="clear:both"></p>
     
  
 
