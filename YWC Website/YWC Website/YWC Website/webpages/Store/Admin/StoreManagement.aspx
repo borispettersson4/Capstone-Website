@@ -33,6 +33,37 @@
         <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="15pt" Text="Store Management"></asp:Label>
         <br />
         <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <asp:LinkButton ID="LinkButton1" runat="server" CssClass="button" PostBackUrl="~/webpages/Store/Admin/ManageProducts.aspx" OnClick="LinkButton1_Click">Add New Item</asp:LinkButton>
         <br />
         <br />
