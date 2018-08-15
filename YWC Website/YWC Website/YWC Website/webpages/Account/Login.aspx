@@ -32,6 +32,11 @@
             literalStatus.Text = "Invalid username or password";
         }
     }
+
+    protected void buttonRegister_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/webpages/Account/Register.aspx");
+    }
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -57,6 +62,12 @@
         <p>
             <asp:Button ID="buttonLogIn" runat="server" CssClass="button" OnClick="buttonLogIn_Click" Text="Log In" />
         </p>
+        <p>
+            Don't have an account? Create a new one here!</p>
+        <p>
+            <asp:Button ID="buttonRegister" runat="server" CssClass="button" OnClick="buttonRegister_Click" Text="Register New Account" />
+        </p>
+
     </form>
 </asp:Content>
 
