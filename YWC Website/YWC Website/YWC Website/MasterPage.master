@@ -62,10 +62,11 @@
         <li> <a href="/webpages/ContactUs/ContactUs.aspx">Contact Us</a>
         <li> <a href="/webpages/Stories/Stories.aspx">Stories</a>
         <li> <a href="/webpages/Gallery/Gallery.aspx">Gallery</a>
+        <li> <a href="/webpages/Store/Admin/StoreManagement.aspx">Management</a>
 
         <li style="float:right">
             <asp:HyperLink ID="lnkLogin" NavigateUrl="~/webpages/Account/Login.aspx" runat="server">Log In</asp:HyperLink>
-            <asp:HyperLink ID="lnkLogout" runat="server" OnClick="linkLogout_Click">Log Out</asp:HyperLink>
+            <asp:HyperLink ID="lnkLogout" NavigateUrl="" runat="server" OnClick="linkLogout_Click">Log Out</asp:HyperLink>
 
         </li>
          <li></li>

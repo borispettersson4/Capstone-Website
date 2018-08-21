@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" %>
 
+<%@ Import namespace="Microsoft.AspNet.Identity" %>
+<%@ Import namespace="Microsoft.AspNet.Identity.EntityFramework" %>
+<%@ Import namespace="Microsoft.Owin.Security" %>
+
 <script runat="server">
 
     protected void Page_Load(object sender, EventArgs e)
@@ -36,21 +40,30 @@
     {
         if (!String.IsNullOrWhiteSpace(Request.QueryString["id"]))
         {
-            string clientID = "-1";
-            int id = Convert.ToInt32(Request.QueryString["id"]);
-            int amount = Convert.ToInt32(dropdownAmount.SelectedValue);
+            string clientID = Context.User.Identity.GetUserId();
 
-            Cart cart = new Cart
+            if (ClientID != null)
             {
-                Amount = amount,
-                ClientID = clientID,
-                DatePurchased = DateTime.Now,
-                IsInCart = true,
-                ProductID = id
-            };
 
-            CartModel model = new CartModel();
-            labelResult.Text = model.InsertCart(cart);
+                int id = Convert.ToInt32(Request.QueryString["id"]);
+                int amount = Convert.ToInt32(dropdownAmount.SelectedValue);
+
+                Cart cart = new Cart
+                {
+                    Amount = amount,
+                    ClientID = clientID,
+                    DatePurchased = DateTime.Now,
+                    IsInCart = true,
+                    ProductID = id
+                };
+
+                CartModel model = new CartModel();
+                labelResult.Text = model.InsertCart(cart);
+            }
+            else
+            {
+                labelResult.Text = "Please log in to add items to cart";
+            }
         }
     }
 </script>
