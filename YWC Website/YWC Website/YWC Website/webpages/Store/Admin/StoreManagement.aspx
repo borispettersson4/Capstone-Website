@@ -29,7 +29,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
-    <form id="form1" runat="server">
         <asp:Label ID="Label1" runat="server" Font-Bold="True" Font-Size="15pt" Text="Store Management"></asp:Label>
         <br />
         <br />
@@ -111,6 +110,5 @@
             </UpdateParameters>
         </asp:SqlDataSource>
         <br />
-    </form>
 </asp:Content>
 

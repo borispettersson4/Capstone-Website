@@ -71,7 +71,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
-    <form id="form1" runat="server">
     <table>
             <!--Column 1 : Image and Title -->
         <tr>
@@ -108,6 +107,5 @@
         </tr>
 
     </table>
-    </form>
 </asp:Content>
 

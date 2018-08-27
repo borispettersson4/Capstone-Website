@@ -105,7 +105,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
-    <form id="form1" runat="server">
+    <form id="form1">
         <p>
             Product Name:</p>
         <p>

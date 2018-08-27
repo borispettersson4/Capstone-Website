@@ -42,7 +42,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
-    <form id="form1" runat="server">
         <p>
             <br />
         </p>
@@ -67,7 +66,5 @@
         <p>
             <asp:Button ID="buttonRegister" runat="server" CssClass="button" OnClick="buttonRegister_Click" Text="Register New Account" />
         </p>
-
-    </form>
 </asp:Content>
 
