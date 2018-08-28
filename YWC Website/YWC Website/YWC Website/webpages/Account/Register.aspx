@@ -60,7 +60,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
-    <form id="form1" runat="server">
         <p>
             &nbsp;</p>
         <p>
@@ -88,6 +87,5 @@
         <p>
             <asp:Button ID="Button1" runat="server" CssClass="button" OnClick="Button1_Click" Text="Create Account" />
         </p>
-    </form>
 </asp:Content>
 

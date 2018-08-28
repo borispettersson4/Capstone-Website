@@ -63,11 +63,9 @@
     
  
 
-    <form id="form1" runat="server">
         <asp:Button ID="Button1" runat="server" Text="Button" />
         <asp:Panel ID="panelProducts" runat="server">
         </asp:Panel>
-    </form>
 
     <!--Space Compensator-->
     <p style="clear:both"></p>

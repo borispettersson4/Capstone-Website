@@ -1,5 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" %>
 
+<%@ Import namespace="Microsoft.AspNet.Identity" %>
+<%@ Import namespace="Microsoft.AspNet.Identity.EntityFramework" %>
+<%@ Import namespace="Microsoft.Owin.Security" %>
+
 <script runat="server">
 
     protected void Page_Load(object sender, EventArgs e)
@@ -36,21 +40,30 @@
     {
         if (!String.IsNullOrWhiteSpace(Request.QueryString["id"]))
         {
-            string clientID = "-1";
-            int id = Convert.ToInt32(Request.QueryString["id"]);
-            int amount = Convert.ToInt32(dropdownAmount.SelectedValue);
+            string clientID = Context.User.Identity.GetUserId();
 
-            Cart cart = new Cart
+            if (clientID != null)
             {
-                Amount = amount,
-                ClientID = clientID,
-                DatePurchased = DateTime.Now,
-                IsInCart = true,
-                ProductID = id
-            };
 
-            CartModel model = new CartModel();
-            labelResult.Text = model.InsertCart(cart);
+                int id = Convert.ToInt32(Request.QueryString["id"]);
+                int amount = Convert.ToInt32(dropdownAmount.SelectedValue);
+
+                Cart cart = new Cart
+                {
+                    Amount = amount,
+                    ClientID = clientID,
+                    DatePurchased = DateTime.Now,
+                    IsInCart = true,
+                    ProductID = id
+                };
+
+                CartModel model = new CartModel();
+                labelResult.Text = model.InsertCart(cart);
+            }
+            else
+            {
+                labelResult.Text = "Please log in to add items to cart";
+            }
         }
     }
 </script>
@@ -58,7 +71,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
-    <form id="form1" runat="server">
     <table>
             <!--Column 1 : Image and Title -->
         <tr>
@@ -95,6 +107,5 @@
         </tr>
 
     </table>
-    </form>
 </asp:Content>
 
