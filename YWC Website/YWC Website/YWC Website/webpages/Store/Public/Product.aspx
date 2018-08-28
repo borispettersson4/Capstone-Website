@@ -42,7 +42,7 @@
         {
             string clientID = Context.User.Identity.GetUserId();
 
-            if (ClientID != null)
+            if (clientID != null)
             {
 
                 int id = Convert.ToInt32(Request.QueryString["id"]);
