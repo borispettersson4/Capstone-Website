@@ -26,6 +26,19 @@
 
                 if (result.Succeeded)
                 {
+
+                    UserInformation info = new UserInformation
+                    {
+                        Address = textAddress.Text,
+                        FirstName = textFirstName.Text,
+                        LastName = textLastName.Text,
+                        PostalCode = Convert.ToInt32(textPostalCode.Text),
+                        GUid = user.Id
+                    };
+
+                    UserInfoModel model = new UserInfoModel();
+                    model.InsertUserInformation(info);
+
                     //Store user in DB
                     var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
 
@@ -58,6 +71,9 @@
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .inputs {}
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
         <p>
@@ -71,6 +87,26 @@
         </p>
         <p>
             <asp:TextBox ID="textEmail" runat="server" CssClass="inputs" Width="170px"></asp:TextBox>
+        </p>
+        <p>
+            First Name</p>
+        <p>
+            <asp:TextBox ID="textFirstName" runat="server" CssClass="inputs" Width="170px"></asp:TextBox>
+        </p>
+        <p>
+            Last Name</p>
+        <p>
+            <asp:TextBox ID="textLastName" runat="server" CssClass="inputs" Width="170px"></asp:TextBox>
+        </p>
+        <p>
+            Address</p>
+        <p>
+            <asp:TextBox ID="textAddress" runat="server" CssClass="inputs" Width="330px" Height="103px" TextMode="MultiLine"></asp:TextBox>
+        </p>
+        <p>
+            Zip Code</p>
+        <p>
+            <asp:TextBox ID="textPostalCode" runat="server" CssClass="inputs" Width="170px"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>

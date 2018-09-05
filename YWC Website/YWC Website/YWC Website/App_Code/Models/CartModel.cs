@@ -70,4 +70,58 @@ public class CartModel
         }
     }
 
+    public List<Cart> GetOrdersInCart(string userId)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        List<Cart> orders = (from x in db.Carts
+                             where x.ClientID == userId
+                             && x.IsInCart
+                             orderby x.DatePurchased
+                             select x).ToList();
+
+        return orders;
+    }
+
+    public int GetAmountOfOrders(string userId)
+    {
+        try
+        {
+            StoreEntities1 db = new StoreEntities1();
+            int amount = (from x in db.Carts
+                          where x.ClientID == userId
+                          && x.IsInCart
+                          select x.Amount).Sum();
+
+            return amount;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+
+    public void UpdateQuantity(int id, int quantity)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        Cart cart = db.Carts.Find(id);
+        cart.Amount = quantity;
+
+        db.SaveChanges();
+    }
+
+    public void MarkOrdersAsPaid(List<Cart> carts)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        if(carts != null)
+        {
+            foreach(Cart cart in carts)
+            {
+                Cart oldcart = db.Carts.Find(cart.ID);
+                oldcart.DatePurchased = DateTime.Now;
+                oldcart.IsInCart = false;
+            }
+
+            db.SaveChanges();
+        }
+    }
 }
