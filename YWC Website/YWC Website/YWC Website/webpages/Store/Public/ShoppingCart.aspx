@@ -28,9 +28,9 @@
 
         //Display values on webpage
 
-        literalTotal.Text = "$" + subTotal;
-        literalVat.Text = "$" + vat;
-        literalTotalAmount.Text = "$" + totalAmount;
+        litTotal.Text = "$ " + subTotal;
+        litVat.Text = "$ " + vat;
+        litTotalAmount.Text = "$ " + totalAmount;
     }
 
     private void CreateShopTable(List<Cart> purchaseList, out double subTotal)
@@ -46,7 +46,9 @@
             ImageButton buttonImage = new ImageButton
             {
                 ImageUrl = string.Format("~/Images/Products/{0}", product.Image),
-                PostBackUrl = string.Format("~/webpages/Store/Public/Product.aspx?id={0}", product.Id)
+                PostBackUrl = string.Format("~/webpages/Store/Public/Product.aspx?id={0}", product.Id),
+                CssClass = "productImage"
+                
             };
 
             //Create delete link
@@ -135,7 +137,7 @@
             table.Rows.Add(b);
 
             //Add table to panelShoppingCart
-            panelShoppingCart.Controls.Add(table);
+            pnlShoppingCart.Controls.Add(table);
 
             //Add total amount of items in cart subtotal
             subTotal += (cart.Amount * Convert.ToDouble(product.Price));
@@ -177,63 +179,58 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
 
-    <asp:panel id="panelShoppingCart" runat="server">
-
-    </asp:panel>
-
-    <table>
-
-        <!--Row 1-->
-        <tr>
-            <td>
-                <b>Total:</b>
-            </td>
-            <td>
-                <asp:Literal id="literalTotal" runat="server" Text=""></asp:Literal>
-            </td>
-        </tr>
-
-        <!--Row 2-->
-        <tr>
-            <td>
-                <b>Vat:</b>
-            </td>
-            <td>
-                <asp:Literal id="literalVat" runat="server" Text=""/>
-            </td>
-        </tr>
-
-        <!--Row 3-->
-        <tr>
-            <td>
-                <b>Shipping:</b>
-            </td>
-            <td>
-                $15
-            </td>
-        </tr>
-
-        <!--Row 4-->
-        <tr>
-            <td>
-                <b>Total Amount:</b>
-            </td>
-            <td>
-                <asp:Literal id="literalTotalAmount" runat="server" Text=""/>
-            </td>
-        </tr>
-
-        <!--Bottom Buttons-->
-        <tr>
-            <td>
-                <asp:LinkButton id="linkContinue" runat="server" PostBackUrl="~/webpages/Store/Public/Store.aspx"></asp:LinkButton>
-     
-                or
-
-                <asp:Button id="buttonCheckOut" runat="server" PostBackUrl="~/webpages/Store/Public/Success.aspx" CssClass="button" Width="250px" Text="Continue Checkout" />
-                
+        <asp:Panel ID="pnlShoppingCart" runat="server">
+    </asp:Panel>
+        <table>
+            <tr>
+                <td>
+                    <b>Total: </b>
+                </td>
+                <td>
+                    <asp:Literal ID="litTotal" runat="server" Text=""></asp:Literal>
+                </td>
             </tr>
 
-    </table>
+            <tr>
+                <td>
+                    <b>Vat: </b>
+                </td>
+                <td>
+                    <asp:Literal ID="litVat" runat="server" Text="" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <b>Shipping: </b>
+                </td>
+                <td>
+                    $ 15
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <b>Total Amount: </b>
+                </td>
+                <td>
+                    <asp:Literal ID="litTotalAmount" runat="server" Text="" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <br />
+                    <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/Index.aspx">Continue Shopping</asp:LinkButton> &nbsp;&nbsp; or                     
+                    <asp:Button ID="btnCheckout" runat="server" Text="Check Out" CssClass="button" Width="250px" PostBackUrl="~/Pages/Success.aspx" />
+
+                    <br />
+
+                    <asp:LinkButton ID="litPaypal" Text="" runat="server" />
+                </td>
+            </tr>
+
+        </table>
+
+
 </asp:Content>
 
