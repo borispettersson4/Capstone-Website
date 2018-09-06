@@ -22,7 +22,7 @@ public class UserInfoModel
         return info;
     }
 
-    public void InsertUserInformation(UserInformation info)
+    public void InsertUserInformation(UserInformation info) 
     {
         StoreEntities1 db = new StoreEntities1();
         db.UserInformations.Add(info);

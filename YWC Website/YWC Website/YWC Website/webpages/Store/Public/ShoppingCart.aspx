@@ -20,7 +20,7 @@
 
         //Create HTML for each element in purchase List
         List<Cart> purchaseList = model.GetOrdersInCart(userId);
-       // CreateShopTable(purchaseList, out subTotal);
+        CreateShopTable(purchaseList, out subTotal);
 
         //Add totals to webpage
         double vat = subTotal * 0.11;
@@ -33,10 +33,142 @@
         literalTotalAmount.Text = "$" + totalAmount;
     }
 
- //   private void CreateShopTable(List<Cart> purchaseList, out double subTotal)
-  //  {
+    private void CreateShopTable(List<Cart> purchaseList, out double subTotal)
+    {
+        subTotal = new double();
+        ProductModel model = new ProductModel();
 
-  //  }
+        foreach (Cart cart in purchaseList)
+        {
+            Product product = model.GetProduct(cart.ProductID);
+
+            //Create the image button
+            ImageButton buttonImage = new ImageButton
+            {
+                ImageUrl = string.Format("~/Images/Products/{0}", product.Image),
+                PostBackUrl = string.Format("~/webpages/Store/Public/Product.aspx?id={0}", product.Id)
+            };
+
+            //Create delete link
+            LinkButton linkDelete = new LinkButton
+            {
+                PostBackUrl = string.Format("~/webpages/ShoppingCart.aspx?productId={0}", cart.ID),
+                Text = "Delete Item",
+                ID = "del" + cart.ID
+            };
+
+            //Add an OnClick Event
+            linkDelete.Click += Delete_Item;
+
+            //Create the quantity dropdown
+            //Generate list with numbers from 1 to 20
+            int[] amount = Enumerable.Range(1, 20).ToArray();
+            DropDownList dropDownAmount = new DropDownList
+            {
+                DataSource = amount,
+                AppendDataBoundItems = true,
+                AutoPostBack = true,
+                ID = cart.ID.ToString()
+            };
+
+            dropDownAmount.DataBind();
+            dropDownAmount.SelectedValue = cart.Amount.ToString();
+            dropDownAmount.SelectedIndexChanged += dropDownAmount_SelectedIndexChanged;
+
+            //Create HTML table with 2 rows
+            Table table = new Table { CssClass = "CartTable" };
+            TableRow a = new TableRow();
+            TableRow b = new TableRow();
+
+            //Create 6 cells for row A 
+
+            TableCell a1 = new TableCell { RowSpan = 2, Width = 50 };
+
+            TableCell a2 = new TableCell { Text = string.Format("<h4>{0}</h4><br/>{1}<br/> Stock",
+                product.Name, "Item No: " + product.Id),
+                HorizontalAlign = HorizontalAlign.Left, Width = 350
+            };
+
+            TableCell a3 = new TableCell { Text = "Unit Price<hr/>" };
+
+            TableCell a4 = new TableCell { Text = "Quantity<hr/>" };
+
+            TableCell a5 = new TableCell { Text = "IItem Total<hr/>" };
+
+            TableCell a6 = new TableCell { };
+
+            //Create 6 cells for row B
+
+            TableCell b1 = new TableCell { };
+
+            TableCell b2 = new TableCell { Text = "$ " + product.Price };
+            TableCell b3 = new TableCell { };
+
+            TableCell b4 = new TableCell { Text = "$ " + Math.Round((cart.Amount * Convert.ToDouble(product.Price)) , 2)};
+
+            TableCell b5 = new TableCell { };
+
+            TableCell b6 = new TableCell { };
+
+            //Set special controls
+            a1.Controls.Add(buttonImage);
+            a6.Controls.Add(linkDelete);
+            b3.Controls.Add(dropDownAmount);
+
+            //Add cells to rows
+            a.Cells.Add(a1);
+            a.Cells.Add(a2);
+            a.Cells.Add(a3);
+            a.Cells.Add(a4);
+            a.Cells.Add(a5);
+            a.Cells.Add(a6);
+
+            b.Cells.Add(b1);
+            b.Cells.Add(b2);
+            b.Cells.Add(b3);
+            b.Cells.Add(b4);
+            b.Cells.Add(b5);
+            b.Cells.Add(b6);
+
+            //Add rows to tables
+            table.Rows.Add(a);
+            table.Rows.Add(b);
+
+            //Add table to panelShoppingCart
+            panelShoppingCart.Controls.Add(table);
+
+            //Add total amount of items in cart subtotal
+            subTotal += (cart.Amount * Convert.ToDouble(product.Price));
+        }
+
+        //Add current user's shopping cart to user specific session
+        Session[User.Identity.GetUserId()] = purchaseList;
+    }
+
+    private void Delete_Item(object sender, EventArgs e)
+    {
+        LinkButton selectedLink = (LinkButton)sender;
+
+        string link = selectedLink.ID.Replace("del", "");
+        int cartId = Convert.ToInt32(link);
+
+        CartModel model = new CartModel();
+        model.DeleteCart(cartId);
+
+        Response.Redirect("~/webpages/Store/Public/ShoppingCart.aspx");
+    }
+
+    private void dropDownAmount_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        DropDownList selectedList = (DropDownList)sender;
+        int quantity = Convert.ToInt32(selectedList.SelectedValue);
+        int cartId = Convert.ToInt32(selectedList.ID);
+
+        CartModel model = new CartModel();
+        model.UpdateQuantity(cartId, quantity);
+
+        Response.Redirect("~/webpages/Store/Public/ShoppingCart.aspx");
+    }
 
 
 </script>
@@ -44,7 +176,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
-    
+
     <asp:panel id="panelShoppingCart" runat="server">
 
     </asp:panel>
@@ -57,7 +189,7 @@
                 <b>Total:</b>
             </td>
             <td>
-                <asp:Literal id="literalTotal" runat="server" Text=""/></asp:Literal>
+                <asp:Literal id="literalTotal" runat="server" Text=""></asp:Literal>
             </td>
         </tr>
 
@@ -67,7 +199,7 @@
                 <b>Vat:</b>
             </td>
             <td>
-                <asp:Literal id="literalVat" runat="server" Text=""/></asp:Literal>
+                <asp:Literal id="literalVat" runat="server" Text=""/>
             </td>
         </tr>
 
@@ -77,7 +209,7 @@
                 <b>Shipping:</b>
             </td>
             <td>
-                <asp:Literal id="literalShipping" runat="server" Text=""/></asp:Literal>
+                $15
             </td>
         </tr>
 
@@ -87,7 +219,7 @@
                 <b>Total Amount:</b>
             </td>
             <td>
-                <asp:Literal id="literalTotalAmount" runat="server" Text=""/></asp:Literal>
+                <asp:Literal id="literalTotalAmount" runat="server" Text=""/>
             </td>
         </tr>
 
@@ -96,13 +228,12 @@
             <td>
                 <asp:LinkButton id="linkContinue" runat="server" PostBackUrl="~/webpages/Store/Public/Store.aspx"></asp:LinkButton>
      
-                OR
+                or
 
                 <asp:Button id="buttonCheckOut" runat="server" PostBackUrl="~/webpages/Store/Public/Success.aspx" CssClass="button" Width="250px" Text="Continue Checkout" />
                 
             </tr>
 
     </table>
-
 </asp:Content>
 

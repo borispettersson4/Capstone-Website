@@ -15,14 +15,22 @@
         {
             lnkLogin.Visible = false;
             lnkLogout.Visible = true;
+            lnkCart.Visible = true;
 
-            if(user.Name == "admin")
-              lnkManagement.Visible = true;
+            CartModel model = new CartModel();
+            string userId = HttpContext.Current.User.Identity.GetUserId();
+            lnkCart.Text = string.Format("My Cart ({1})", Context.User.Identity.Name, model.GetAmountOfOrders(userId));
+
+            if (HttpContext.Current.User.Identity.GetUserName() == "admin")
+            {
+                lnkManagement.Visible = true;
+            }
         }
         else
         {
             lnkLogin.Visible = true;
             lnkLogout.Visible = false;
+            lnkCart.Visible = false;
             lnkManagement.Visible = false;
         }
     }
@@ -70,9 +78,11 @@
         <li> <asp:HyperLink ID="lnkManagement" NavigateUrl="~/webpages/Store/Admin/StoreManagement.aspx" runat="server">Management</asp:HyperLink>
 
             <li style="float:right">
+            <asp:HyperLink ID="lnkCart" runat="server" NavigateUrl="~/webpages/Store/Public/ShoppingCart.aspx">My Cart</asp:HyperLink>
             <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/webpages/Account/Login.aspx">Log In</asp:HyperLink>
             <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Log Out</asp:LinkButton>
             </li>
+
     </ul>
 
         </div>
