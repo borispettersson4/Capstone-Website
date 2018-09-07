@@ -400,6 +400,12 @@ a {
         width: 100px;
     }
 
+.CenterBold {
+    font-family: arial,helvetica,sans-serif;
+    color: black;
+    text-align:center;
+}
+
 
 
 /*Para botones de facebook y de instagram*/
