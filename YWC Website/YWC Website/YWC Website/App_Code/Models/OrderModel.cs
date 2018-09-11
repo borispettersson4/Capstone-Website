@@ -51,6 +51,7 @@ public class OrderModel
             o.DatePurchased = order.DatePurchased;
             o.isSent = order.isSent;
             o.CartID = order.CartID;
+            o.Total = order.Total;
 
             db.SaveChanges();
 
@@ -89,6 +90,28 @@ public class OrderModel
                              && !x.isSent
                              orderby x.DatePurchased
                              select x).ToList();
+
+        return orders;
+    }
+
+    public List<OrderDetail> GetAllOrders()
+    {
+        StoreEntities1 db = new StoreEntities1();
+        List<OrderDetail> orders = (from x in db.OrderDetails
+                                    where !x.isSent
+                                    orderby x.DatePurchased
+                                    select x).ToList();
+
+        return orders;
+    }
+
+    public List<OrderDetail> GetAllUniqueOrders()
+    {
+        StoreEntities1 db = new StoreEntities1();
+        List<OrderDetail> orders = (from x in db.OrderDetails
+                                    where !x.isSent
+                                    orderby x.DatePurchased descending
+                                    select x).Distinct().ToList();
 
         return orders;
     }

@@ -17,6 +17,8 @@
         {
             List<Cart> carts = (List<Cart>)Session[User.Identity.GetUserId()];
 
+            double total = (double)Session[User.Identity.GetUserId()];
+
             OrderModel orderModel = new OrderModel();
             CartModel cartModel = new CartModel();
             UserInfoModel userModel = new UserInfoModel();
@@ -33,7 +35,9 @@
                         isSent = false,
                         ClientAddress = userModel.GetUserInformation(clientID).Address.ToString(),
                         ClientName = userModel.GetUserInformation(clientID).FirstName.ToString() + " " + userModel.GetUserInformation(clientID).LastName.ToString(),
-                        CartID = cart.ID
+                        CartID = cart.ID,
+                        Total = total
+                        
                     };
 
                     Label1.Text = orderModel.InsertOrder(order);

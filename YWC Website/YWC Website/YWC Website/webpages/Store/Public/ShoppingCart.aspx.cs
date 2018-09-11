@@ -160,6 +160,7 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
 
         //Add selected objects to Session
         Session[User.Identity.GetUserId()] = carts;
+        Session[User.Identity.GetUserId()] = subTotal;
     }
 
     private string GeneratePaypalButton(double subTotal)

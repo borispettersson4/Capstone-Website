@@ -39,6 +39,7 @@ public partial class OrderDetail
     public string ClientName { get; set; }
     public string ClientAddress { get; set; }
     public int CartID { get; set; }
+    public Nullable<double> Total { get; set; }
 
     public virtual Cart Cart { get; set; }
 }

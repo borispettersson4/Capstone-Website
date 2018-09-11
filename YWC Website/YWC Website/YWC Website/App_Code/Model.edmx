@@ -27,6 +27,7 @@
           <Property Name="ClientName" Type="nchar" MaxLength="100" />
           <Property Name="ClientAddress" Type="nchar" MaxLength="100" Nullable="false" />
           <Property Name="CartID" Type="int" Nullable="false" />
+          <Property Name="Total" Type="float" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -216,6 +217,7 @@
           <Property Name="ClientAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="CartID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cart" Relationship="StoreModel.FK_OrderDetails_Cart" FromRole="OrderDetail" ToRole="Cart" />
+          <Property Name="Total" Type="Double" />
         </EntityType>
         <Association Name="FK_OrderDetails_Cart">
           <End Type="StoreModel.Cart" Role="Cart" Multiplicity="1" />
@@ -282,6 +284,7 @@
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="StoreModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
