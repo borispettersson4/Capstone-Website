@@ -21,16 +21,28 @@
             CartModel cartModel = new CartModel();
             UserInfoModel userModel = new UserInfoModel();
 
-                OrderDetail order = new OrderDetail
-                {
-                    ClientID = clientID,
-                    DatePurchased = DateTime.Now,
-                    isSent = false,
-                    ClientAddress = userModel.GetUserInformation(clientID).Address.ToString(),
-                    ClientName = userModel.GetUserInformation(clientID).FirstName.ToString() + " " + userModel.GetUserInformation(clientID).LastName.ToString()
-                }; 
+            try
+            {
 
-            Label1.Text = orderModel.InsertOrder(order);
+                foreach (Cart cart in carts)
+                {
+                    OrderDetail order = new OrderDetail
+                    {
+                        ClientID = clientID,
+                        DatePurchased = DateTime.Now,
+                        isSent = false,
+                        ClientAddress = userModel.GetUserInformation(clientID).Address.ToString(),
+                        ClientName = userModel.GetUserInformation(clientID).FirstName.ToString() + " " + userModel.GetUserInformation(clientID).LastName.ToString(),
+                        CartID = cart.ID
+                    };
+
+                    Label1.Text = orderModel.InsertOrder(order);
+                }
+
+            }catch(Exception ex)
+            {
+                Label1.Text = "Error: Items no longer in Cart" + ex;
+            }
 
             cartModel.MarkOrdersAsPaid(carts);
 

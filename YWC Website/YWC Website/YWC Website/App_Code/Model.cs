@@ -12,6 +12,12 @@ using System.Collections.Generic;
 
 public partial class Cart
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Cart()
+    {
+        this.OrderDetails = new HashSet<OrderDetail>();
+    }
+
     public int ID { get; set; }
     public string ClientID { get; set; }
     public int ProductID { get; set; }
@@ -20,6 +26,8 @@ public partial class Cart
     public bool IsInCart { get; set; }
 
     public virtual Product Product { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 }
 
 public partial class OrderDetail
@@ -30,6 +38,9 @@ public partial class OrderDetail
     public bool isSent { get; set; }
     public string ClientName { get; set; }
     public string ClientAddress { get; set; }
+    public int CartID { get; set; }
+
+    public virtual Cart Cart { get; set; }
 }
 
 public partial class Product

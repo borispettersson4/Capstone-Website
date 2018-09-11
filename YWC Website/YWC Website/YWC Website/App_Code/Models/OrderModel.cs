@@ -18,9 +18,22 @@ public class OrderModel
 
             return order.DatePurchased + " was successfully inserted";
         }
-        catch (Exception e)
+        catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
         {
-            return "Error:" + e;
+            Exception raise = dbEx;
+            foreach (var validationErrors in dbEx.EntityValidationErrors)
+            {
+                foreach (var validationError in validationErrors.ValidationErrors)
+                {
+                    string message = string.Format("{0}:{1}",
+                        validationErrors.Entry.Entity.ToString(),
+                        validationError.ErrorMessage);
+                    // raise a new exception nesting
+                    // the current instance as InnerException
+                    raise = new InvalidOperationException(message, raise);
+                }
+            }
+            throw raise;
         }
     }
 
@@ -37,6 +50,7 @@ public class OrderModel
             o.ClientID = order.ClientID;
             o.DatePurchased = order.DatePurchased;
             o.isSent = order.isSent;
+            o.CartID = order.CartID;
 
             db.SaveChanges();
 
@@ -69,7 +83,6 @@ public class OrderModel
 
     public List<OrderDetail> GetOrders(string userId)
     {
-
         StoreEntities1 db = new StoreEntities1();
         List<OrderDetail> orders = (from x in db.OrderDetails
                              where x.ClientID == userId

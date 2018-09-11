@@ -10,8 +10,9 @@
         <EntityTypeShape EntityType="StoreModel.ProductType" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="StoreModel.FK_Cart_Product" ManuallyRouted="false" />
         <AssociationConnector Association="StoreModel.FK_Product_ProductTypes" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="StoreModel.UserInformation" Width="1.5" PointX="7" PointY="1" />
-        <EntityTypeShape EntityType="StoreModel.OrderDetail" Width="1.5" PointX="7" PointY="0.875" />
+        <EntityTypeShape EntityType="StoreModel.UserInformation" Width="1.5" PointX="7.125" PointY="3.75" />
+        <EntityTypeShape EntityType="StoreModel.OrderDetail" Width="1.5" PointX="7.125" PointY="1" />
+        <AssociationConnector Association="StoreModel.FK_OrderDetails_Cart" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,12 +20,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DatePurchased" Type="datetime" />
           <Property Name="isSent" Type="bit" Nullable="false" />
           <Property Name="ClientName" Type="nchar" MaxLength="100" />
-          <Property Name="ClientAddress" Type="nchar" MaxLength="10" />
+          <Property Name="ClientAddress" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="CartID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -68,6 +69,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_OrderDetails_Cart">
+          <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+          <End Role="OrderDetails" Type="Self.OrderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetails">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_ProductTypes">
           <End Role="ProductTypes" Type="Self.ProductTypes" Multiplicity="1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -90,6 +103,10 @@
             <End Role="Product" EntitySet="Product" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
+          <AssociationSet Name="FK_OrderDetails_Cart" Association="Self.FK_OrderDetails_Cart">
+            <End Role="Cart" EntitySet="Cart" />
+            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_ProductTypes" Association="Self.FK_Product_ProductTypes">
             <End Role="ProductTypes" EntitySet="ProductTypes" />
             <End Role="Product" EntitySet="Product" />
@@ -110,6 +127,7 @@
           <Property Name="DatePurchased" Type="DateTime" Precision="3" />
           <Property Name="IsInCart" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+          <NavigationProperty Name="OrderDetails" Relationship="StoreModel.FK_OrderDetails_Cart" FromRole="Cart" ToRole="OrderDetail" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -170,6 +188,10 @@
           </AssociationSet>
           <EntitySet Name="UserInformations" EntityType="StoreModel.UserInformation" />
           <EntitySet Name="OrderDetails" EntityType="StoreModel.OrderDetail" />
+          <AssociationSet Name="FK_OrderDetails_Cart" Association="StoreModel.FK_OrderDetails_Cart">
+            <End Role="Cart" EntitySet="Carts" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserInformation">
           <Key>
@@ -187,12 +209,26 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ClientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DatePurchased" Type="DateTime" Precision="3" />
           <Property Name="isSent" Type="Boolean" Nullable="false" />
           <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="ClientAddress" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ClientAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cart" Relationship="StoreModel.FK_OrderDetails_Cart" FromRole="OrderDetail" ToRole="Cart" />
         </EntityType>
+        <Association Name="FK_OrderDetails_Cart">
+          <End Type="StoreModel.Cart" Role="Cart" Multiplicity="1" />
+          <End Type="StoreModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -246,6 +282,7 @@
           <EntitySetMapping Name="OrderDetails">
             <EntityTypeMapping TypeName="StoreModel.OrderDetail">
               <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
                 <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
                 <ScalarProperty Name="ClientName" ColumnName="ClientName" />
                 <ScalarProperty Name="isSent" ColumnName="isSent" />
