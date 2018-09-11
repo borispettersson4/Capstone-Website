@@ -192,11 +192,11 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
 
         Response.Write("<form action='https://www.sandbox.paypal.com/cgi-bin/webscr' method='post' name='buyCredits' id='buyCredits'>");
         Response.Write("<input type='hidden' name='cmd' value='_xclick'>");
-        Response.Write("<input type='hidden' name='business' value='borispettersson4@gmail.com'>");
+        Response.Write("<input type='hidden' name='business' value='yeswecanine@gmail.com'>");
         Response.Write("<input type='hidden' name='currency_code' value='USD'>");
         Response.Write("<input type='hidden' name='iem_name' value='Yes-We-Can-Ine Purchase Confirmation'>");
         Response.Write("<input type='hidden' name='amount' value='" + Session["total"].ToString() + "'>");
-        Response.Write("<input type='hidden' name='return' value='http://localhost:49520/Store/Public/Success.aspx?order=" + order_no.ToString() + "'>");
+        Response.Write("<input type='hidden' name='return' value='http://localhost:49520/webpages/Store/Public/Success.aspx?order=" + order_no.ToString() + "'>");
         Response.Write("</form>");
 
         Response.Write("<script type='text/javascript'>");

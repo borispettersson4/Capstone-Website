@@ -24,6 +24,7 @@
             if (HttpContext.Current.User.Identity.GetUserName() == "admin")
             {
                 lnkManagement.Visible = true;
+                lnkCart.Text = "admin";
             }
         }
         else
@@ -75,7 +76,7 @@
         <li> <a href="/webpages/ContactUs/ContactUs.aspx">Contact Us</a>
         <li> <a href="/webpages/Stories/Stories.aspx">Stories</a>
         <li> <a href="/webpages/Gallery/Gallery.aspx">Gallery</a>
-        <li> <asp:HyperLink ID="lnkManagement" NavigateUrl="~/webpages/Store/Admin/StoreManagement.aspx" runat="server">Management</asp:HyperLink>
+        <li> <asp:HyperLink ID="lnkManagement" NavigateUrl="~/webpages/Management/ManagementMenu.aspx" runat="server">Management</asp:HyperLink>
 
             <li style="float:right">
             <asp:HyperLink ID="lnkCart" runat="server" NavigateUrl="~/webpages/Store/Public/ShoppingCart.aspx">My Cart</asp:HyperLink>

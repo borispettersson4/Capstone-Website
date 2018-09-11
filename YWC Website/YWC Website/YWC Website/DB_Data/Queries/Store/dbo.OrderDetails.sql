@@ -1,9 +1,10 @@
-﻿CREATE TABLE [dbo].[OrderDetails]
-(
-	[Id] INT NOT NULL , 
-    [product_name] NCHAR(50) NOT NULL, 
-    [product_price] NCHAR(50) NOT NULL, 
-    [product_quantity] NCHAR(50) NOT NULL, 
-    [product_image] NCHAR(50) NULL, 
-    CONSTRAINT [PK_OrderDetails] PRIMARY KEY ([Id]) 
-)
+﻿CREATE TABLE [dbo].[OrderDetails] (
+    [Id]            INT NOT NULL,
+    [ClientID]      NVARCHAR(50)         NOT NULL,
+    [DatePurchased] DATETIME    NULL,
+    [isSent]        BIT         DEFAULT ((0)) NOT NULL,
+    [ClientName]    NCHAR (100) NULL,
+    [ClientAddress] NCHAR (10)  NULL,
+    CONSTRAINT [PK_OrderDetails] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
