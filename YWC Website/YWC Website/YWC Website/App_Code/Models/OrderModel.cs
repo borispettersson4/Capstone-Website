@@ -94,6 +94,7 @@ public class OrderModel
         return orders;
     }
 
+
     public List<OrderDetail> GetAllOrders()
     {
         StoreEntities1 db = new StoreEntities1();

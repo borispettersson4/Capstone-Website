@@ -24,6 +24,15 @@
         Response.Redirect("~/webpages/Store/Admin/ManageProducts.aspx?id=" + rowId);
     }
 
+    protected void gridProducts_RowDeleting(object sender, GridViewEditEventArgs e)
+    {
+        try
+        {
+            
+        }
+        catch (Exception ex) { }
+    }
+
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">

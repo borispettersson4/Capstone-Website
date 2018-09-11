@@ -5,25 +5,18 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
-
-public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
+public partial class webpages_Store_Admin_Order : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Check if user is logged in
-        string userId = User.Identity.GetUserId();
 
-        //Display all items in user's cart.
-        GetPurchasesInCart(userId);
+        GetAllOrders();
     }
 
-    protected void Delete_Item(object sender, EventArgs e)
+    protected void View_Item(object sender, EventArgs e)
     {
         LinkButton selectedLink = (LinkButton)sender;
-        string link = selectedLink.ID.Replace("del", "");
+        string link = selectedLink.ID.Replace("view", "");
         int cartId = Convert.ToInt32(link);
 
         var cartModel = new CartModel();
@@ -45,68 +38,44 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
         Response.Redirect("~/webpages/Store/Public/ShoppingCart.aspx");
     }
 
-    private void GetPurchasesInCart(string userId)
+    private void GetAllOrders()
     {
-        CartModel cartModel = new CartModel();
-        double subTotal = 0;
+        OrderModel orderModel = new OrderModel();
 
         //Get all purchases for current user and display in table
-        List<Cart> purchaseList = cartModel.GetOrdersInCart(userId);
-        CreateShopTable(purchaseList, out subTotal);
-
-        //Add totals to webpage
-        double vat = subTotal * 0.11;
-        double totalAmount = subTotal + 15 + vat;
-
-        litTotal.Text = "$ " + subTotal;
-        litVat.Text = "$ " + vat;
-        litTotalAmount.Text = "$ " + totalAmount;
-        Session["total"] = totalAmount.ToString();
-
-        //Add paypal button to checkout
-        string paypal = GeneratePaypalButton(subTotal);
-        litPaypal.Text = paypal;
+        List<OrderDetail> orderList = orderModel.GetAllUniqueOrders();
+        CreateOrderTable(orderList);
     }
 
-    private void CreateShopTable(IEnumerable<Cart> carts, out double subTotal)
+    private void CreateOrderTable(IEnumerable<OrderDetail> orders)
     {
-        subTotal = new double();
-        ProductModel model = new ProductModel();
+        StoreEntities1 db = new StoreEntities1();
+        CartModel cartModel = new CartModel();
 
-        foreach (Cart cart in carts)
+        foreach (OrderDetail order in orders)
         {
-            //Create HTML elements and fill values with database data
-            Product product = model.GetProduct(cart.ProductID);
 
-            ImageButton btnImage = new ImageButton
+            LinkButton btnName = new LinkButton
             {
-                ImageUrl = string.Format("~/Images/Products/{0}", product.Image),
-                PostBackUrl = string.Format("~/webpages/Store/Public/Product.aspx?id={0}", product.Id)
+                Text = order.ClientName
             };
 
-            LinkButton lnkDelete = new LinkButton
+            LinkButton lnkView = new LinkButton
             {
-                PostBackUrl = string.Format("~/webpages/Store/Public/ShoppingCart.aspx?productId={0}", cart.ID),
-                Text = "Remove Item",
-                ID = "del" + cart.ID,
+                PostBackUrl = string.Format("~/webpages/Store/Admin/Order.aspx?orderId={0}", order.Id),
+                Text = "View Item",
+                ID = "view" + order.Id
             };
 
-            lnkDelete.Click += Delete_Item;
-
-            //Fill amount list with numbers 1-20
-            int[] amount = Enumerable.Range(1, 20).ToArray();
-            DropDownList ddlAmount = new DropDownList
+            Label quantity = new Label
             {
-                DataSource = amount,
-                AppendDataBoundItems = true,
-                AutoPostBack = true,
-                ID = cart.ID.ToString()
+                Text = (from x in db.Carts
+                        where x.ClientID == order.ClientID
+                        && !x.IsInCart
+                        select x.Amount).Sum().ToString()
             };
-            ddlAmount.DataBind();
-            ddlAmount.SelectedValue = cart.Amount.ToString();
-            ddlAmount.SelectedIndexChanged += ddlAmount_SelectedIndexChanged;
 
-            //Create table to hold shopping cart details
+            //Create table to hold order details
             Table table = new Table { CssClass = "CartTable" };
             TableRow row1 = new TableRow();
             TableRow row2 = new TableRow();
@@ -114,28 +83,28 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
             TableCell cell1_1 = new TableCell { RowSpan = 2, Width = 50 };
             TableCell cell1_2 = new TableCell
             {
-                Text = string.Format("<h4>{0}</h4><br />{1}<br/>In Stock",
-                product.Name, "Item No:" + product.Id),
+                Text = string.Format("<h4>{0}</h4><br />{1}<br/> ",
+                order.ClientName, (order.isSent) ? "Order Sent" : "Awaiting Admin Confirmation"),
                 HorizontalAlign = HorizontalAlign.Left,
                 Width = 350,
             };
-            TableCell cell1_3 = new TableCell { Text = "Item Price<hr/>" };
+            TableCell cell1_3 = new TableCell { };
             TableCell cell1_4 = new TableCell { Text = "Quantity<hr/>" };
             TableCell cell1_5 = new TableCell { Text = "Item Total<hr/>" };
             TableCell cell1_6 = new TableCell();
 
             TableCell cell2_1 = new TableCell();
-            TableCell cell2_2 = new TableCell { Text = "$ " + product.Price };
+            TableCell cell2_2 = new TableCell { };
             TableCell cell2_3 = new TableCell();
-            TableCell cell2_4 = new TableCell { Text = "$ " + Math.Round((cart.Amount * Convert.ToDouble(product.Price)), 2) };
+            TableCell cell2_4 = new TableCell { Text = "$ " + order.Total };
             TableCell cell2_5 = new TableCell();
 
 
 
             //Set custom controls
-            cell1_1.Controls.Add(btnImage);
-            cell1_6.Controls.Add(lnkDelete);
-            cell2_3.Controls.Add(ddlAmount);
+            cell1_1.Controls.Add(btnName);
+            cell1_6.Controls.Add(lnkView);
+            cell2_3.Controls.Add(quantity);
 
             //Add rows & cells to table
             row1.Cells.Add(cell1_1);
@@ -152,14 +121,9 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
             row2.Cells.Add(cell2_5);
             table.Rows.Add(row1);
             table.Rows.Add(row2);
-            pnlShoppingCart.Controls.Add(table);
-
-            //Add total of current purchased item to subtotal
-            subTotal += (cart.Amount * Convert.ToDouble(product.Price));
+            pnlOrders.Controls.Add(table);
         }
 
-        //Add selected objects to Session
-        Session[User.Identity.GetUserId()] = carts;
     }
 
     private string GeneratePaypalButton(double subTotal)

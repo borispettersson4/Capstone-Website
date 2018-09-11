@@ -8,7 +8,6 @@ using System.Web;
 /// </summary>
 public class CartModel
 {
-
     public string InsertCart(Cart cart)
     {
         try

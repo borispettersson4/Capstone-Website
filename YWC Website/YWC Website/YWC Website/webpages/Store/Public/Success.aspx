@@ -6,28 +6,26 @@
 
 <script runat="server">
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        string url = HttpContext.Current.Request.Url.AbsoluteUri;
-        string clientID = Context.User.Identity.GetUserId();
-
-        Label1.Text = clientID;
-
-        if (url.Contains("order="))
+        protected void Page_Load(object sender, EventArgs e)
         {
-            List<Cart> carts = (List<Cart>)Session[User.Identity.GetUserId()];
+            string url = HttpContext.Current.Request.Url.AbsoluteUri;
+            string clientID = Context.User.Identity.GetUserId();
 
-            double total = (double)Session[User.Identity.GetUserId()];
+            Label1.Text = clientID;
 
-            OrderModel orderModel = new OrderModel();
-            CartModel cartModel = new CartModel();
-            UserInfoModel userModel = new UserInfoModel();
-
-            try
+            if (url.Contains("order="))
             {
+                List<Cart> carts = (List<Cart>)Session[User.Identity.GetUserId()];
 
-                foreach (Cart cart in carts)
+                OrderModel orderModel = new OrderModel();
+                CartModel cartModel = new CartModel();
+                UserInfoModel userModel = new UserInfoModel();
+
+                try
                 {
+
+                    //      foreach (Cart cart in carts)
+                    //      {
                     OrderDetail order = new OrderDetail
                     {
                         ClientID = clientID,
@@ -35,20 +33,20 @@
                         isSent = false,
                         ClientAddress = userModel.GetUserInformation(clientID).Address.ToString(),
                         ClientName = userModel.GetUserInformation(clientID).FirstName.ToString() + " " + userModel.GetUserInformation(clientID).LastName.ToString(),
-                        CartID = cart.ID,
-                        Total = total
-                        
-                    };
+                        CartID = carts.ElementAt(0).ID,
+                        Total = Convert.ToDouble(Session["total"].ToString())
 
-                    Label1.Text = orderModel.InsertOrder(order);
-                }
+                };
+
+                Label1.Text = orderModel.InsertOrder(order);
+
+                cartModel.MarkOrdersAsPaid(carts);
+                //   }
 
             }catch(Exception ex)
             {
-                Label1.Text = "Error: Items no longer in Cart" + ex;
+                Label1.Text = "An Error Occured. Please Try Again Later.";
             }
-
-            cartModel.MarkOrdersAsPaid(carts);
 
             Session[User.Identity.GetUserId()] = null;
         }
