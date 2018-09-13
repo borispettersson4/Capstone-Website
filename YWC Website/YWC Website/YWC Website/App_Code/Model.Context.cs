@@ -26,6 +26,6 @@ public partial class StoreEntities1 : DbContext
     public virtual DbSet<Cart> Carts { get; set; }
     public virtual DbSet<Product> Products { get; set; }
     public virtual DbSet<ProductType> ProductTypes { get; set; }
-    public virtual DbSet<UserInformation> UserInformations { get; set; }
     public virtual DbSet<OrderDetail> OrderDetails { get; set; }
+    public virtual DbSet<UserInformation> UserInformations { get; set; }
 }

@@ -49,9 +49,10 @@ public class OrderModel
             //Replace the data in db
             o.ClientID = order.ClientID;
             o.DatePurchased = order.DatePurchased;
-            o.isSent = order.isSent;
+            o.Status = order.Status;
             o.CartID = order.CartID;
             o.Total = order.Total;
+            o.ClientEmail = order.ClientEmail;
 
             db.SaveChanges();
 
@@ -87,11 +88,27 @@ public class OrderModel
         StoreEntities1 db = new StoreEntities1();
         List<OrderDetail> orders = (from x in db.OrderDetails
                              where x.ClientID == userId
-                             && !x.isSent
+                             && x.Status != "SENT"
                              orderby x.DatePurchased
                              select x).ToList();
 
         return orders;
+    }
+
+    public OrderDetail GetOrder(int id)
+    {
+        try
+        {
+            using (StoreEntities1 db = new StoreEntities1())
+            {
+                OrderDetail order = db.OrderDetails.Find(id);
+                return order;
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
     }
 
 
@@ -99,7 +116,7 @@ public class OrderModel
     {
         StoreEntities1 db = new StoreEntities1();
         List<OrderDetail> orders = (from x in db.OrderDetails
-                                    where !x.isSent
+                                    where x.Status != "SENT"
                                     orderby x.DatePurchased
                                     select x).ToList();
 
@@ -110,7 +127,6 @@ public class OrderModel
     {
         StoreEntities1 db = new StoreEntities1();
         List<OrderDetail> orders = (from x in db.OrderDetails
-                                    where !x.isSent
                                     orderby x.DatePurchased descending
                                     select x).Distinct().ToList();
 
@@ -142,7 +158,7 @@ public class OrderModel
         if(order != null)
         {
             OrderDetail oldOrder = db.OrderDetails.Find(order.Id);
-            oldOrder.isSent = true;
+            oldOrder.Status = "SENT";
         }
 
         db.SaveChanges();

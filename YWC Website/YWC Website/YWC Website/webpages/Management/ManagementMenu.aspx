@@ -31,5 +31,10 @@
         <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/webpages/Store/Admin/OrdersManagement.aspx">View Orders</asp:HyperLink>
     </p>
 
+       <h2>Administration Tools</h2>
+    <p>
+        <asp:HyperLink ID="HyperLink4" runat="server" NavigateUrl="~/webpages/Store/Admin/UserManagement.aspx">Edit Users</asp:HyperLink>
+    </p>
+
 </asp:Content>
 

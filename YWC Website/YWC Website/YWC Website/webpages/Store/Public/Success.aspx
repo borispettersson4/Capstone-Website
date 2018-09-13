@@ -23,18 +23,22 @@
 
                 try
                 {
+                    foreach(Cart cart in carts)
+                    {
+                        cart.DatePurchased = DateTime.Now;
+                    }
 
-                    //      foreach (Cart cart in carts)
-                    //      {
                     OrderDetail order = new OrderDetail
                     {
                         ClientID = clientID,
                         DatePurchased = DateTime.Now,
-                        isSent = false,
-                        ClientAddress = userModel.GetUserInformation(clientID).Address.ToString(),
+                        Status = "PENDING",
+                        ClientAddress = userModel.GetUserInformation(clientID).Address.ToString() + " ZIP:" + userModel.GetUserInformation(clientID).PostalCode.ToString(),
                         ClientName = userModel.GetUserInformation(clientID).FirstName.ToString() + " " + userModel.GetUserInformation(clientID).LastName.ToString(),
                         CartID = carts.ElementAt(0).ID,
-                        Total = Convert.ToDouble(Session["total"].ToString())
+                        Total = Convert.ToDouble(Session["total"].ToString()),
+                        ClientEmail = userModel.GetUserInformation(clientID).Email
+
 
                 };
 
@@ -45,7 +49,7 @@
 
             }catch(Exception ex)
             {
-                Label1.Text = "An Error Occured. Please Try Again Later.";
+                Label1.Text = "An Error Occured. Please Try Again Later. " + ex;
             }
 
             Session[User.Identity.GetUserId()] = null;

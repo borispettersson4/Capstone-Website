@@ -5,35 +5,38 @@
 
 <script runat="server">
 
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
-        userStore.Context.Database.Connection.ConnectionString =
-        System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnectionString"].ConnectionString;
-
-        UserManager<IdentityUser> manager = new UserManager<IdentityUser>(userStore);
-
-        //Create new User and store in DB
-        IdentityUser user = new IdentityUser();
-        user.UserName = textEmail.Text;
-
-        if (textPassword.Text == textConfirmPassord.Text)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            try
+            UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
+            userStore.Context.Database.Connection.ConnectionString =
+            System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnectionString"].ConnectionString;
+
+            UserManager<IdentityUser> manager = new UserManager<IdentityUser>(userStore);
+
+            //Create new User and store in DB
+            IdentityUser user = new IdentityUser();
+            user.UserName = textEmail.Text;
+            user.Email = textEmail.Text;
+
+            if (textPassword.Text == textConfirmPassord.Text)
             {
-                //Create user object & Database will be created
-                IdentityResult result = manager.Create(user,textPassword.Text);
-
-                if (result.Succeeded)
+                try
                 {
+                    //Create user object & Database will be created
+                    IdentityResult result = manager.Create(user,textPassword.Text);
 
-                    UserInformation info = new UserInformation
+                    if (result.Succeeded)
                     {
-                        Address = textAddress.Text,
-                        FirstName = textFirstName.Text,
-                        LastName = textLastName.Text,
-                        PostalCode = Convert.ToInt32(textPostalCode.Text),
-                        GUid = user.Id
+
+                        UserInformation info = new UserInformation
+                        {
+                            Address = textAddress.Text,
+                            FirstName = textFirstName.Text,
+                            LastName = textLastName.Text,
+                            PostalCode = textPostalCode.Text,
+                        GUid = user.Id,
+                        Email = user.UserName
+    
                     };
 
                     UserInfoModel model = new UserInfoModel();
@@ -112,13 +115,13 @@
             <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
         </p>
         <p>
-            <asp:TextBox ID="textPassword" runat="server" CssClass="inputs"></asp:TextBox>
+            <asp:TextBox ID="textPassword" runat="server" CssClass="inputs" TextMode="Password"></asp:TextBox>
         </p>
         <p>
             <asp:Label ID="Label3" runat="server" Text="Confirm Password"></asp:Label>
         </p>
         <p>
-            <asp:TextBox ID="textConfirmPassord" runat="server" CssClass="inputs"></asp:TextBox>
+            <asp:TextBox ID="textConfirmPassord" runat="server" CssClass="inputs" TextMode="Password"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="Button1" runat="server" CssClass="button" OnClick="Button1_Click" Text="Create Account" />

@@ -23,9 +23,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ClientID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DatePurchased" Type="datetime" />
-          <Property Name="isSent" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ClientName" Type="nchar" MaxLength="100" />
-          <Property Name="ClientAddress" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="ClientAddress" Type="varchar(max)" Nullable="false" />
+          <Property Name="ClientEmail" Type="nchar" MaxLength="100" />
           <Property Name="CartID" Type="int" Nullable="false" />
           <Property Name="Total" Type="float" />
         </EntityType>
@@ -56,7 +57,8 @@
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
           <Property Name="Address" Type="nchar" MaxLength="100" />
-          <Property Name="PostalCode" Type="int" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="nchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_Cart_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
@@ -187,37 +189,27 @@
             <End Role="ProductTypes" EntitySet="ProductTypes" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
-          <EntitySet Name="UserInformations" EntityType="StoreModel.UserInformation" />
           <EntitySet Name="OrderDetails" EntityType="StoreModel.OrderDetail" />
           <AssociationSet Name="FK_OrderDetails_Cart" Association="StoreModel.FK_OrderDetails_Cart">
             <End Role="Cart" EntitySet="Carts" />
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
+          <EntitySet Name="UserInformations" EntityType="StoreModel.UserInformation" />
         </EntityContainer>
-        <EntityType Name="UserInformation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="PostalCode" Type="Int32" />
-        </EntityType>
         <EntityType Name="OrderDetail">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ClientID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DatePurchased" Type="DateTime" Precision="3" />
-          <Property Name="isSent" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="ClientAddress" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ClientAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CartID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cart" Relationship="StoreModel.FK_OrderDetails_Cart" FromRole="OrderDetail" ToRole="Cart" />
           <Property Name="Total" Type="Double" />
+          <NavigationProperty Name="Cart" Relationship="StoreModel.FK_OrderDetails_Cart" FromRole="OrderDetail" ToRole="Cart" />
+          <Property Name="ClientEmail" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
         </EntityType>
         <Association Name="FK_OrderDetails_Cart">
           <End Type="StoreModel.Cart" Role="Cart" Multiplicity="1" />
@@ -231,6 +223,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserInformation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -269,28 +273,30 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="StoreModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetails">
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserInformations">
             <EntityTypeMapping TypeName="StoreModel.UserInformation">
               <MappingFragment StoreEntitySet="UserInformation">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="GUid" ColumnName="GUid" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="StoreModel.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="CartID" ColumnName="CartID" />
-                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
-                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
-                <ScalarProperty Name="isSent" ColumnName="isSent" />
-                <ScalarProperty Name="DatePurchased" ColumnName="DatePurchased" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

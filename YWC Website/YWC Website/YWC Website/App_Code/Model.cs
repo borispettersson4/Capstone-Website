@@ -35,11 +35,12 @@ public partial class OrderDetail
     public int Id { get; set; }
     public string ClientID { get; set; }
     public Nullable<System.DateTime> DatePurchased { get; set; }
-    public bool isSent { get; set; }
+    public string Status { get; set; }
     public string ClientName { get; set; }
     public string ClientAddress { get; set; }
     public int CartID { get; set; }
     public Nullable<double> Total { get; set; }
+    public string ClientEmail { get; set; }
 
     public virtual Cart Cart { get; set; }
 }
@@ -86,5 +87,6 @@ public partial class UserInformation
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Address { get; set; }
-    public Nullable<int> PostalCode { get; set; }
+    public string PostalCode { get; set; }
+    public string Email { get; set; }
 }

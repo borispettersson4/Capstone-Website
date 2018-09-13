@@ -18,11 +18,12 @@
         if(user != null)
         {
             //Call Owin functionality
-            var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-            var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+              var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+              var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
 
             //Sign in User
-            authenticationManager.SignIn(new AuthenticationProperties{IsPersistent = false}, userIdentity);
+               authenticationManager.SignIn(new AuthenticationProperties{IsPersistent = false}, userIdentity);
+            
 
             //Redirect
             Response.Redirect("~/Default.aspx");
