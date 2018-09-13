@@ -46,6 +46,7 @@
         textDescription.Text = product.Description;
         textName.Text = product.Name;
         textPrice.Text = product.Price.ToString();
+        textboxStock.Text = product.Stock.ToString();
 
         //Fill dropdown list
         dropDownImage.SelectedValue = product.Image;
@@ -89,10 +90,29 @@
         product.TypeId = Convert.ToInt32(dropDownType.SelectedValue);
         product.Description = textDescription.Text;
         product.Image = dropDownImage.SelectedValue;
+        product.Stock = Convert.ToInt32(textboxStock.Text);
 
         return product;
     }
 
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+
+        if (FileUploadImages.HasFile)
+        {
+            FileUploadImages.SaveAs(Request.PhysicalApplicationPath + "/Images/Products/" + FileUploadImages.FileName.ToString());
+            litUploadStatus.Visible = true;
+            litUploadStatus.Text = "Image Uploaded successfully";
+            dropDownImage.DataBind();
+            Response.Redirect("~/webpages/Store/Admin/ManageProducts.aspx");
+            
+        }
+        else
+        {
+            litUploadStatus.Visible = true;
+            litUploadStatus.Text = "Error : No Image File Selected";
+        }
+    }
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -129,10 +149,24 @@
             <asp:TextBox ID="textPrice" runat="server" Width="187px"></asp:TextBox>
         </p>
         <p>
-            Image:</p>
+            Select Image:</p>
         <p>
-            <asp:DropDownList ID="dropDownImage" runat="server">
+            <asp:DropDownList ID="dropDownImage" runat="server" Height="42px" Width="174px">
             </asp:DropDownList>
+        </p>
+        <p>
+            Upload Image:</p>
+        <p>
+        &nbsp;<asp:Button ID="Button1" runat="server" Height="24px" OnClick="Button1_Click" Text="Add Image" Width="99px" />
+            <asp:FileUpload ID="FileUploadImages" runat="server" />
+        </p>
+        <p>
+            <asp:Literal ID="litUploadStatus" runat="server"></asp:Literal>
+        </p>
+        <p>
+            Stock:</p>
+        <p>
+            <asp:TextBox ID="textboxStock" runat="server" Width="84px"></asp:TextBox>
         </p>
         <p>
             <asp:Button ID="buttonAdd" runat="server" Text="Add Product" OnClick="buttonAdd_Click" />

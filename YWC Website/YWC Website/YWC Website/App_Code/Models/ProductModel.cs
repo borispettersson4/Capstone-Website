@@ -40,6 +40,7 @@ public class ProductModel
             p.TypeId = product.TypeId;
             p.Description = product.Description;
             p.Image = product.Image;
+            p.Stock = product.Stock;
 
             db.SaveChanges();
 
@@ -119,6 +120,20 @@ public class ProductModel
         {
             return null;
         }
+    }
+
+    public void UpdateStock(int id, int x)
+    {
+        try
+        {
+            using (StoreEntities1 db = new StoreEntities1())
+            {
+                Product product = db.Products.Find(id);
+                product.Stock = x;
+                db.SaveChanges();
+            }
+        }
+        catch (Exception){}
     }
 
 }

@@ -1,5 +1,9 @@
 ﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" %>
 
+<%@ Import namespace="Microsoft.AspNet.Identity" %>
+<%@ Import namespace="Microsoft.AspNet.Identity.EntityFramework" %>
+<%@ Import namespace="Microsoft.Owin.Security" %>
+
 <script runat="server">
 
     protected void Page_Load(object sender, EventArgs e)
@@ -9,9 +13,12 @@
 
     private void FillPage()
     {
+        string userId = User.Identity.GetUserId();
         //Get list of products
         ProductModel productModel = new ProductModel();
+        CartModel cartModel = new CartModel();
         List<Product> products = productModel.GetAllProducts();
+        List<Cart> purchaseList = cartModel.GetOrdersInCart(userId);
 
         //Verify Products validity
         if(products != null)
@@ -23,6 +30,7 @@
                 ImageButton imageButton = new ImageButton();
                 Label labelName = new Label();
                 Label labelPrice = new Label();
+                Label labelStock = new Label();
 
                 //Set Values to Items
                 imageButton.ImageUrl = "~/Images/Products/" + product.Image;
@@ -32,18 +40,42 @@
                 labelName.Text = product.Name;
                 labelName.CssClass = "productName";
 
-                labelPrice.Text = product.Price.ToString();
+                labelPrice.Text = "$" + product.Price.ToString();
                 labelPrice.CssClass = "productPrice";
+
+                labelStock.Text = product.Stock.ToString() + " In Stock";
+                labelStock.CssClass = "productPrice";
 
                 //Add controls to parent
                 productPanel.Controls.Add(imageButton);
                 productPanel.Controls.Add(new Literal { Text = "<br />" });
                 productPanel.Controls.Add(labelName);
                 productPanel.Controls.Add(new Literal { Text = "<br />" });
+                productPanel.Controls.Add(labelStock);
+                productPanel.Controls.Add(new Literal { Text = "<br />" });
                 productPanel.Controls.Add(labelPrice);
 
                 //Add dynamic Panels to Parent Panel
                 panelProducts.Controls.Add(productPanel);
+
+                if(product.Stock < 1)
+                {
+                    labelStock.Text = "Out of Stock";
+                    imageButton.Enabled = false;
+                }
+                else if (product.Stock >= 1)
+                {
+                    imageButton.Enabled = true;
+                }
+
+                foreach (Cart cart in purchaseList)
+                {
+                    if (product.Id == cart.ProductID)
+                    {
+                        labelStock.Text = "Item In Cart";
+                        imageButton.Enabled = false;
+                    }
+                }
 
             }
         }
@@ -62,10 +94,8 @@
 <asp:Content ID="MainContent1" ContentPlaceHolderID="MainContent1" Runat="Server">
     
  
-
         <asp:Panel ID="panelProducts" runat="server">
         </asp:Panel>
-
      
 
 </asp:Content>

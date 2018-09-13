@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -9,7 +10,7 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //Get order data
         GetAllOrders();
     }
 
@@ -76,6 +77,25 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
             litClientEmail.Text = order.ClientEmail;
             litClientAddress.Text = order.ClientAddress;
             litPurchaseDate.Text = order.DatePurchased.ToString();
+
+            if (order.Status == "PENDING")
+            {
+                lblOrderStatus.Text = "Confirmation Pending";
+                lblOrderStatusDesc.Text = "Order not yet confirmerd. Please enter the tracking ID number provided by the post office to send delivery confirmation to client.";
+                lnkDeleteOrder.Visible = false;
+                lnkDeleteOrder.Enabled = false;
+                textBoxTracking.Visible = true;
+                buttonSend.Visible = true;
+            }
+            else
+            {
+                lblOrderStatus.Text = "Order Confirmed";
+                lblOrderStatusDesc.Text = "Order is confirmed. No further action is required.";
+                lnkDeleteOrder.Visible = true;
+                lnkDeleteOrder.Enabled = true;
+                textBoxTracking.Visible = false;
+                buttonSend.Visible = false;
+            }
         }
     }
 
@@ -161,5 +181,59 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
             subTotal += (cart.Amount * Convert.ToDouble(product.Price));
         }
 
+    }
+
+    protected void buttonSend_Click(object sender, EventArgs e)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        OrderModel orderModel = new OrderModel();
+        CartModel cartModel = new CartModel();
+
+        List<Cart> cartList = new List<Cart>();
+
+        if (!String.IsNullOrWhiteSpace(Request.QueryString["id"]))
+        {
+            int id = Convert.ToInt32(Request.QueryString["id"]);
+            OrderDetail order = orderModel.GetOrder(id);
+
+            //Send Email to Client
+            System.Net.Mail.SmtpClient smtpClient = new SmtpClient("mail.MyWebsiteDomainName.com", 25);
+
+            smtpClient.Credentials = new System.Net.NetworkCredential("info@MyWebsiteDomainName.com", "myIDPassword");
+            smtpClient.UseDefaultCredentials = true;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.EnableSsl = true;
+            MailMessage mail = new MailMessage();
+
+            //Setting From , To and CC
+            mail.From = new MailAddress("info@MyWebsiteDomainName", "MyWeb Site");
+            mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
+            mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
+
+            //smtpClient.Send(mail);
+
+            OrderDetail updatedOrder = order;
+
+            updatedOrder.Status = "SENT";
+
+            orderModel.UpdateOrder(order.Id, updatedOrder);
+            
+            Response.Redirect("~/webpages/Store/Admin/OrdersManagement.aspx");
+
+        }
+    }
+
+    protected void lnkDeleteOrder_Click(object sender, EventArgs e)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        OrderModel orderModel = new OrderModel();
+        int id = Convert.ToInt32(Request.QueryString["id"]);
+        OrderDetail order = orderModel.GetOrder(id);
+
+        if (order.Status == "SENT")
+        {
+            orderModel.DeleteOrder(order.Id);
+            Response.Redirect("~/webpages/Store/Admin/OrdersManagement.aspx");
+        }
     }
 }

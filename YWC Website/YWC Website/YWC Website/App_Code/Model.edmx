@@ -40,6 +40,7 @@
           <Property Name="Price" Type="float" />
           <Property Name="Description" Type="text" />
           <Property Name="Image" Type="varchar" MaxLength="150" />
+          <Property Name="Stock" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductTypes">
           <Key>
@@ -144,6 +145,7 @@
           <Property Name="Image" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
           <NavigationProperty Name="ProductType" Relationship="Self.FK_Product_ProductTypes" FromRole="Product" ToRole="ProductTypes" />
+          <Property Name="Stock" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductType">
           <Key>
@@ -256,6 +258,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="StoreModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TypeId" ColumnName="TypeId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

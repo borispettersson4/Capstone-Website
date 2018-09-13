@@ -6,38 +6,48 @@
 
 <script runat="server">
 
-        protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string url = HttpContext.Current.Request.Url.AbsoluteUri;
+        string clientID = Context.User.Identity.GetUserId();
+
+        Label1.Text = clientID;
+
+        if (url.Contains("order="))
         {
-            string url = HttpContext.Current.Request.Url.AbsoluteUri;
-            string clientID = Context.User.Identity.GetUserId();
+            List<Cart> carts = (List<Cart>)Session[User.Identity.GetUserId()];
 
-            Label1.Text = clientID;
+            OrderModel orderModel = new OrderModel();
+            CartModel cartModel = new CartModel();
+            UserInfoModel userModel = new UserInfoModel();
+            ProductModel productModel = new ProductModel();
 
-            if (url.Contains("order="))
+            try
             {
-                List<Cart> carts = (List<Cart>)Session[User.Identity.GetUserId()];
-
-                OrderModel orderModel = new OrderModel();
-                CartModel cartModel = new CartModel();
-                UserInfoModel userModel = new UserInfoModel();
-
-                try
+                foreach(Cart cart in carts)
                 {
-                    foreach(Cart cart in carts)
-                    {
-                        cart.DatePurchased = DateTime.Now;
-                    }
+                    cart.DatePurchased = DateTime.Now;
 
-                    OrderDetail order = new OrderDetail
+                    foreach (Product product in productModel.GetAllProducts())
                     {
-                        ClientID = clientID,
-                        DatePurchased = DateTime.Now,
-                        Status = "PENDING",
-                        ClientAddress = userModel.GetUserInformation(clientID).Address.ToString() + " ZIP:" + userModel.GetUserInformation(clientID).PostalCode.ToString(),
-                        ClientName = userModel.GetUserInformation(clientID).FirstName.ToString() + " " + userModel.GetUserInformation(clientID).LastName.ToString(),
-                        CartID = carts.ElementAt(0).ID,
-                        Total = Convert.ToDouble(Session["total"].ToString()),
-                        ClientEmail = userModel.GetUserInformation(clientID).Email
+                        if (product.Id == cart.ProductID)
+                        {
+                            int newStock = product.Stock - cart.Amount;
+                            productModel.UpdateStock(product.Id,newStock);
+                        }
+                    }
+                }
+
+                OrderDetail order = new OrderDetail
+                {
+                    ClientID = clientID,
+                    DatePurchased = DateTime.Now,
+                    Status = "PENDING",
+                    ClientAddress = userModel.GetUserInformation(clientID).Address.ToString() + " ZIP:" + userModel.GetUserInformation(clientID).PostalCode.ToString(),
+                    ClientName = userModel.GetUserInformation(clientID).FirstName.ToString() + " " + userModel.GetUserInformation(clientID).LastName.ToString(),
+                    CartID = carts.ElementAt(0).ID,
+                    Total = Convert.ToDouble(Session["total"].ToString()),
+                    ClientEmail = userModel.GetUserInformation(clientID).Email
 
 
                 };
@@ -45,6 +55,8 @@
                 Label1.Text = orderModel.InsertOrder(order);
 
                 cartModel.MarkOrdersAsPaid(carts);
+
+
                 //   }
 
             }catch(Exception ex)

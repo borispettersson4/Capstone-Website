@@ -13,17 +13,17 @@
                     <asp:BoundField DataField="Id" HeaderText="No." InsertVisible="False" ReadOnly="True" SortExpression="Id">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="DatePurchased" HeaderText="DatePurchased" SortExpression="DatePurchased">
+                    <asp:BoundField DataField="DatePurchased" HeaderText="Purchase Date" SortExpression="DatePurchased">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="Total" HeaderText="Amount" SortExpression="Total">
+                    <asp:BoundField DataField="Total" HeaderText="Total (USD)" SortExpression="Total">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:BoundField>
                     <asp:BoundField DataField="ClientName" HeaderText="Name" SortExpression="ClientName">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                     </asp:BoundField>
                     <asp:BoundField DataField="ClientAddress" HeaderText="Address" SortExpression="ClientAddress">
-                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                    <ItemStyle HorizontalAlign="Justify" VerticalAlign="Middle" />
                     </asp:BoundField>
                     <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status">
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
@@ -45,7 +45,7 @@
             </asp:GridView>
 
         <asp:Panel ID="pnlOrders" runat="server">
-            <asp:SqlDataSource ID="OrderDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:StoreConnectionString %>" DeleteCommand="DELETE FROM [OrderDetails] WHERE [Id] = @original_Id" InsertCommand="INSERT INTO [OrderDetails] ([DatePurchased], [Total], [ClientName], [ClientAddress], [Status]) VALUES (@DatePurchased, @Total, @ClientName, @ClientAddress, @Status)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [DatePurchased], [Total], [ClientName], [ClientAddress], [Status] FROM [OrderDetails]" UpdateCommand="UPDATE [OrderDetails] SET [DatePurchased] = @DatePurchased, [Total] = @Total, [ClientName] = @ClientName, [ClientAddress] = @ClientAddress, [Status] = @Status WHERE [Id] = @original_Id">
+            <asp:SqlDataSource ID="OrderDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:StoreConnectionString %>" DeleteCommand="DELETE FROM [OrderDetails] WHERE [Id] = @original_Id" InsertCommand="INSERT INTO [OrderDetails] ([DatePurchased], [Total], [ClientName], [ClientAddress], [Status]) VALUES (@DatePurchased, @Total, @ClientName, @ClientAddress, @Status)" OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT [Id], [DatePurchased], [Total], [ClientName], [ClientAddress], [Status] FROM [OrderDetails] ORDER BY [DatePurchased] DESC" UpdateCommand="UPDATE [OrderDetails] SET [DatePurchased] = @DatePurchased, [Total] = @Total, [ClientName] = @ClientName, [ClientAddress] = @ClientAddress, [Status] = @Status WHERE [Id] = @original_Id">
                 <DeleteParameters>
                     <asp:Parameter Name="original_Id" Type="Int32" />
                 </DeleteParameters>

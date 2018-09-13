@@ -81,6 +81,23 @@ public class CartModel
         return orders;
     }
 
+    public Product FindProduct(int id)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        ProductModel model = new ProductModel();
+        Product product = new Product();
+
+        foreach(Cart cart in db.Carts)
+        {
+            if (cart.ProductID == id)
+            {
+                return cart.Product;
+            }
+        }
+
+        return product;
+    }
+
     public int GetAmountOfOrders(string userId)
     {
         try

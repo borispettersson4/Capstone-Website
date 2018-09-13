@@ -94,7 +94,7 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
             lnkDelete.Click += Delete_Item;
 
             //Fill amount list with numbers 1-20
-            int[] amount = Enumerable.Range(1, 20).ToArray();
+            int[] amount = Enumerable.Range(1, product.Stock).ToArray();
             DropDownList ddlAmount = new DropDownList
             {
                 DataSource = amount,

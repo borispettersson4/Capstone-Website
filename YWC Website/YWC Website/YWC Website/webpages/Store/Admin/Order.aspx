@@ -91,5 +91,39 @@
 
         </table>
 
+    <div style="text-align:center">
+
+        <p>
+            ____________________________________________________________________________________________________________________________________</p>
+        <p>
+            &nbsp;</p>
+        <p>
+
+            <asp:Label ID="lblOrderStatus" runat="server" Text="Order Not Confirmed" Font-Bold="True" Font-Size="Large"></asp:Label>
+
+    </p>
+        <p>
+
+            <asp:Label ID="lblOrderStatusDesc" runat="server" Text="Order confirmation not yet confirmerd. Please enter the tracking ID number provided by the post office to send delivery confirmation to client."></asp:Label>
+
+    </p>
+        <p>
+
+            <asp:TextBox ID="textBoxTracking" runat="server" BorderWidth="3px" Font-Bold="False" Font-Size="Small" Height="18px" Width="344px" style="text-align:center"></asp:TextBox>
+
+    </p>
+        <p>
+
+            <asp:Button ID="buttonSend" runat="server" Font-Bold="True" Font-Size="Small" Height="36px" Text="Send Confirmation" Width="216px" OnClick="buttonSend_Click" />
+
+    </p>
+
+            <p>
+                <asp:LinkButton ID="lnkDeleteOrder" runat="server" OnClick="lnkDeleteOrder_Click">Delete Order</asp:LinkButton>
+            </p>
+
+    </div>
+
+
     </asp:Content>
 

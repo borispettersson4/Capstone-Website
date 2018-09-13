@@ -28,7 +28,10 @@
             imageProduct.ImageUrl = "~/Images/Products/" + product.Image;
 
             //Fill drop down list
-            int[] amount = Enumerable.Range(1, 20).ToArray();
+
+            CartModel model = new CartModel();
+
+            int[] amount = Enumerable.Range(1, product.Stock).ToArray();
             dropdownAmount.DataSource = amount;
             dropdownAmount.AppendDataBoundItems = true;
             dropdownAmount.DataBind();
@@ -40,31 +43,67 @@
     {
         if (!String.IsNullOrWhiteSpace(Request.QueryString["id"]))
         {
+            int id = Convert.ToInt32(Request.QueryString["id"]);
             string clientID = Context.User.Identity.GetUserId();
+            ProductModel productModel = new ProductModel();
+            CartModel cartModel = new CartModel();
+            Product product = productModel.GetProduct(id);
 
-            if (clientID != null)
+            if (!isInCart() && product.Stock >= 1)
             {
-
-                int id = Convert.ToInt32(Request.QueryString["id"]);
-                int amount = Convert.ToInt32(dropdownAmount.SelectedValue);
-
-                Cart cart = new Cart
+                if (clientID != null)
                 {
-                    Amount = amount,
-                    ClientID = clientID,
-                    DatePurchased = DateTime.Now,
-                    IsInCart = true,
-                    ProductID = id
-                };
 
-                CartModel model = new CartModel();
-                labelResult.Text = model.InsertCart(cart);
+                    int amount = Convert.ToInt32(dropdownAmount.SelectedValue);
+
+                    Cart cart = new Cart
+                    {
+                        Amount = amount,
+                        ClientID = clientID,
+                        DatePurchased = DateTime.Now,
+                        IsInCart = true,
+                        ProductID = id
+                    };
+
+                    CartModel model = new CartModel();
+                    labelResult.Text = model.InsertCart(cart);
+                }
+                else if (clientID == null)
+                {
+                    labelResult.Text = "Error : Please log in to add items to cart";
+                }
             }
-            else
+            else if (product.Stock < 1)
             {
-                labelResult.Text = "Please log in to add items to cart";
+                labelResult.Text = "Error : Item out of Stock";
+            }
+            else if (isInCart())
+            {
+                labelResult.Text = "Item In Cart";
             }
         }
+    }
+
+    private bool isInCart()
+    {
+        bool b = false;
+
+        string userId = User.Identity.GetUserId();
+        int id = Convert.ToInt32(Request.QueryString["id"]);
+        string clientID = Context.User.Identity.GetUserId();
+        ProductModel productModel = new ProductModel();
+        CartModel cartModel = new CartModel();
+        Product product = productModel.GetProduct(id);
+        List<Cart> purchaseList = cartModel.GetOrdersInCart(userId);
+
+        foreach (Cart cart in purchaseList)
+        {
+            if (product.Id == cart.ProductID)
+            {
+                b = true;
+            }
+        }
+        return b;
     }
 </script>
 
