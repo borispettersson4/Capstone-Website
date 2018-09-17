@@ -73,8 +73,7 @@
         <li> <a href="/Default.aspx">Home</a>
         <li> <a href="/webpages/Store/Public/Store.aspx">Store</a>
         <li> <a href="/webpages/Donation/Donation.aspx">Donations</a>
-        <li> <a href="/webpages/ContactUs/ContactUs.aspx">Contact Us</a>
-        <li> <a href="/webpages/Stories/Stories.aspx">Stories</a>
+        <li> <a href="/webpages/ContactUs/Public/ContactUs.aspx">Contact Us</a>
         <li> <a href="/webpages/Gallery/Gallery.aspx">Gallery</a>
         <li> <asp:HyperLink ID="lnkManagement" NavigateUrl="~/webpages/Management/ManagementMenu.aspx" runat="server">Management</asp:HyperLink>
 
