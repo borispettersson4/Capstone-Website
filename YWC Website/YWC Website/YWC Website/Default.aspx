@@ -5,13 +5,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent1" Runat="Server">
 
- <script runat="server">
+    <script runat="server">
 
      protected void Page_Load(object sender, EventArgs e)
      {
          StoreEntities1 db = new StoreEntities1();
          PageContentModel model = new PageContentModel();
-         PageContent content = model.GetPageContent().ElementAt(0);
+         PageContent content = model.GetPageContent();
 
          MainTitle.Text = content.Home_MainTitle;
          WhoAreWeText.Text = content.Home_Title2;
@@ -20,8 +20,6 @@
          Desc3.Text = content.Home_Desc3;
          Title4.Text = content.Home_Title4;
          Desc4.Text = content.Home_Desc4;
-
-
      }
 
 </script>

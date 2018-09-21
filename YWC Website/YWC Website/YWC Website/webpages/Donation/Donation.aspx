@@ -2,34 +2,40 @@
 
 <script runat="server">
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        PageContentModel model = new PageContentModel();
+        PageContent content = model.GetPageContent();
+
+        MainTitle.Text = content.Donation_MainTitle;
+        Desc1.Text = content.Donation_Desc1;
+    }
+
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
 
-<div class ="contentText">
+        <p>
+    </p>
 
-<br /> <br />   <!--Double Space-->
+<div style="text-align:center">
+    <h1 style="color:chocolate">
+        <asp:Literal ID="MainTitle" runat="server"></asp:Literal>
+    </h1>
+<div />
 
-<h1><b> Support Yes We Can-Ine! </b></h1>
-
-<br /> <br />   <!--Double Space-->
-
-Your generous donation means everything to us! With each small donation means we'd be giving dogs
-out there food, water, shelter, and love. We are ever so thankful for your astounding support!
-
-<br /> <br />   <!--Double Space-->
-
-<div style ="text-align:center">
-
-Click here to donate any amount you wish to Yes We Can-Ine:
-
+<div style="text-align:center">
+    <p style="font-family:'Comic Sans MS'"><b>         
+        <asp:Literal ID="Desc1" runat="server"></asp:Literal>
+ </b> 
+    </p>
 </div>
 
-</div> <!--END TEXT-->
-
-<br /> <br />   <!--Double Space-->
+            <p>
+    </p>
 
 <div style ="text-align:center">
 

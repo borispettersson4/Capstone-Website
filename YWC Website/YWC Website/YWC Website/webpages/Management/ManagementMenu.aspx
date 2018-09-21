@@ -16,10 +16,10 @@
 
     </p>
 
-       <h2>Home</h2>
+       <h2>Page Customization</h2>
 
     <p>
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/DefaultManager.aspx">Edit Home Page</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/webpages/Management/DefaultManager.aspx">Edit Page Content</asp:HyperLink>
     </p>
 
        <h2>Store</h2>

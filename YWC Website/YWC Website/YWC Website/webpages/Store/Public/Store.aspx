@@ -8,6 +8,16 @@
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        StoreEntities1 db = new StoreEntities1();
+        PageContentModel model = new PageContentModel();
+        PageContent content = model.GetPageContent();
+
+        MainTitle.Text = content.Store_MainTitle;
+        Desc1.Text = content.Store_Desc1;
+        Desc2.Text = content.Store_Desc2;
+
+
+
         FillPage();
     }
 
@@ -93,9 +103,32 @@
 
 <asp:Content ID="MainContent1" ContentPlaceHolderID="MainContent1" Runat="Server">
     
- 
+        <p>
+    </p>
+
+<div style="text-align:center">
+    <h1 style="color:chocolate">
+        <asp:Literal ID="MainTitle" runat="server"></asp:Literal>
+    </h1>
+<div />
+
+<div style="text-align:initial">
+    <p style="font-family:'Comic Sans MS'"><b>         
+        <asp:Literal ID="Desc1" runat="server"></asp:Literal>
+ </b> 
+    </p>
+</div>
+
+
         <asp:Panel ID="panelProducts" runat="server">
         </asp:Panel>
+
+    <div style="text-align:initial">
+    <p style="font-family:'Comic Sans MS'"><b>         
+        <asp:Literal ID="Desc2" runat="server"></asp:Literal>
+ </b> 
+    </p>
+</div>
      
 
 </asp:Content>

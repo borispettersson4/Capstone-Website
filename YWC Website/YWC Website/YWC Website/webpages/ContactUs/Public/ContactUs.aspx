@@ -3,6 +3,19 @@
 
 <script runat="server">
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        PageContentModel model = new PageContentModel();
+        PageContent content = model.GetPageContent();
+
+        MainTitle.Text = content.Contact_MainTitle;
+        Desc1.Text = content.Contact_Desc1;
+        Email.Text = content.Contact_Email;
+        Desc2.Text = content.Contact_Desc2;
+        Tel.Text = content.Contact_Tel;
+
+    }
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -10,37 +23,41 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent1" Runat="Server">
 
-<div class="contentText">
+        <p>
+    </p>
 
-<br /> <br />   <!--Double Space-->
-<h1><b> Contact Us </b></h1>
+<div style="text-align:center">
+    <h1 style="color:chocolate">
+        <asp:Literal ID="MainTitle" runat="server"></asp:Literal>
+    </h1>
+<div />
+
+<div style="text-align:left">
+    <p style="font-family:'Comic Sans MS'"><b>         
+        <asp:Literal ID="Desc1" runat="server"></asp:Literal>
+ </b> 
+    </p>
+</div>
+
+    <div style="text-align:left">
+    <h3 style="color:chocolate">
+        <asp:Literal ID="Email" runat="server"></asp:Literal>
+    </h3>
+<div />
+
+        <div style="text-align:left">
+    <p style="font-family:'Comic Sans MS'"><b>         
+        <asp:Literal ID="Desc2" runat="server"></asp:Literal>
+ </b> 
+    </p>
+</div>
+
+    <div style="text-align:left">
+    <h3 style="color:chocolate">
+        <asp:Literal ID="Tel" runat="server"></asp:Literal>
+    </h3>
+<div />
 
 
-<br /> <br />   <!--Double Space-->
-
-<!--     <img src="../../Images/testpage/OkatheNeko_Day_Wallpaper.jpg" 
-     style ="margin:0 auto;
-     width: 100%;"/>
--->
-
-You may visit our office building located at Sterling Park 34th Ave.
-
-<br /> <br />   <!--Double Space-->
-
-You can send us an email at:
-
-<br /> <br />   <!--Double Space-->
-
-<h3><b>borisruiz4@gmail.com</b></h3>
-
-<br /> <br />   <!--Double Space-->
-
-You can contact us during openning hours using the following number :
-
-<br /> <br />   <!--Double Space-->
-
-<h3><b>(787)-407-5043</b></h3>
-
-</div>  <!--End of conentText-->
 
 </asp:Content>

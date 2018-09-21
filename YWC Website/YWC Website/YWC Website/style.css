@@ -14,7 +14,7 @@ a {
 
 /* HEADER section ========================== */
 
-.header {
+.header { 
     height: 200px; /*200px*/
     width: 1080px; /*1030/ 968px/964px*/
     border: solid 2px #000;
@@ -79,7 +79,7 @@ a {
     /*border-right: solid 2px #000;*/
     /*border-left: solid 2px #000;*/
     /*border-bottom: solid 2px #000;*/
-    solid;
+
     font-family: Arial;
     align-content: center;
     font-size: 16px;

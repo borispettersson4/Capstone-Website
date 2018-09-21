@@ -2,6 +2,16 @@
 
 <script runat="server">
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        StoreEntities1 db = new StoreEntities1();
+        PageContentModel model = new PageContentModel();
+        PageContent content = model.GetPageContent();
+
+        MainTitle.Text = content.Gallery_MainTitle;
+        Desc1.Text = content.Gallery_Desc1;
+    }
+
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -11,13 +21,21 @@
 
 <div class="contentText">
 
-    <br /> <br />   <!--Double Space-->
-    <div style="text-align:center">
-        <br /> <br />   <!--Double Space-->
-        <br /> <br />   <!--Double Space-->
-        <h2>Our Photo Gallery</h2>
-        This is a preview of our photo gallery.
-    </div>
+        <p>
+    </p>
+
+<div style="text-align:center">
+    <h1 style="color:chocolate">
+        <asp:Literal ID="MainTitle" runat="server"></asp:Literal>
+    </h1>
+<div />
+
+<div style="text-align:center">
+    <p style="font-family:'Comic Sans MS'"><b>         
+        <asp:Literal ID="Desc1" runat="server"></asp:Literal>
+ </b> 
+    </p>
+</div>
 
 <br /> <br />   <!--Double Space-->
 
