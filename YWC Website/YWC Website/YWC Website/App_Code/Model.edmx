@@ -30,6 +30,31 @@
           <Property Name="CartID" Type="int" Nullable="false" />
           <Property Name="Total" Type="float" />
         </EntityType>
+        <EntityType Name="PageContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Home_MainTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Home_Title2" Type="varchar" MaxLength="100" />
+          <Property Name="Home_Desc2" Type="text" />
+          <Property Name="Home_Title3" Type="varchar" MaxLength="100" />
+          <Property Name="Home_Desc3" Type="text" />
+          <Property Name="Home_Title4" Type="varchar" MaxLength="100" />
+          <Property Name="Home_Desc4" Type="text" />
+          <Property Name="Store_MainTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Store_Desc1" Type="text" />
+          <Property Name="Store_Desc2" Type="text" />
+          <Property Name="Donation_MainTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Donation_Desc1" Type="text" />
+          <Property Name="Contact_MainTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Contact_Desc1" Type="text" />
+          <Property Name="Contact_Email" Type="varchar" MaxLength="100" />
+          <Property Name="Contact_Desc2" Type="text" />
+          <Property Name="Contact_Tel" Type="varchar" MaxLength="100" />
+          <Property Name="Gallery_MainTitle" Type="varchar" MaxLength="100" />
+          <Property Name="Gallery_Desc1" Type="text" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Id" />
@@ -100,6 +125,7 @@
         <EntityContainer Name="StoreModelStoreContainer">
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PageContent" EntityType="Self.PageContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductTypes" EntityType="Self.ProductTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserInformation" EntityType="Self.UserInformation" Schema="dbo" store:Type="Tables" />
@@ -197,6 +223,7 @@
             <End Role="OrderDetail" EntitySet="OrderDetails" />
           </AssociationSet>
           <EntitySet Name="UserInformations" EntityType="StoreModel.UserInformation" />
+          <EntitySet Name="PageContents" EntityType="StoreModel.PageContent" />
         </EntityContainer>
         <EntityType Name="OrderDetail">
           <Key>
@@ -236,6 +263,31 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PageContent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Home_MainTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Home_Title2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Home_Desc2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Home_Title3" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Home_Desc3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Home_Title4" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Home_Desc4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Store_MainTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Store_Desc1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Store_Desc2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Donation_MainTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Donation_Desc1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_MainTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Desc1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Desc2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Contact_Tel" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gallery_MainTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Gallery_Desc1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -300,6 +352,32 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="GUid" ColumnName="GUid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PageContents">
+            <EntityTypeMapping TypeName="StoreModel.PageContent">
+              <MappingFragment StoreEntitySet="PageContent">
+                <ScalarProperty Name="Gallery_Desc1" ColumnName="Gallery_Desc1" />
+                <ScalarProperty Name="Gallery_MainTitle" ColumnName="Gallery_MainTitle" />
+                <ScalarProperty Name="Contact_Tel" ColumnName="Contact_Tel" />
+                <ScalarProperty Name="Contact_Desc2" ColumnName="Contact_Desc2" />
+                <ScalarProperty Name="Contact_Email" ColumnName="Contact_Email" />
+                <ScalarProperty Name="Contact_Desc1" ColumnName="Contact_Desc1" />
+                <ScalarProperty Name="Contact_MainTitle" ColumnName="Contact_MainTitle" />
+                <ScalarProperty Name="Donation_Desc1" ColumnName="Donation_Desc1" />
+                <ScalarProperty Name="Donation_MainTitle" ColumnName="Donation_MainTitle" />
+                <ScalarProperty Name="Store_Desc2" ColumnName="Store_Desc2" />
+                <ScalarProperty Name="Store_Desc1" ColumnName="Store_Desc1" />
+                <ScalarProperty Name="Store_MainTitle" ColumnName="Store_MainTitle" />
+                <ScalarProperty Name="Home_Desc4" ColumnName="Home_Desc4" />
+                <ScalarProperty Name="Home_Title4" ColumnName="Home_Title4" />
+                <ScalarProperty Name="Home_Desc3" ColumnName="Home_Desc3" />
+                <ScalarProperty Name="Home_Title3" ColumnName="Home_Title3" />
+                <ScalarProperty Name="Home_Desc2" ColumnName="Home_Desc2" />
+                <ScalarProperty Name="Home_Title2" ColumnName="Home_Title2" />
+                <ScalarProperty Name="Home_MainTitle" ColumnName="Home_MainTitle" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

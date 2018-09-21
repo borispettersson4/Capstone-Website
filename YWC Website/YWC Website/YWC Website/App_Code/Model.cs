@@ -45,6 +45,30 @@ public partial class OrderDetail
     public virtual Cart Cart { get; set; }
 }
 
+public partial class PageContent
+{
+    public int Id { get; set; }
+    public string Home_MainTitle { get; set; }
+    public string Home_Title2 { get; set; }
+    public string Home_Desc2 { get; set; }
+    public string Home_Title3 { get; set; }
+    public string Home_Desc3 { get; set; }
+    public string Home_Title4 { get; set; }
+    public string Home_Desc4 { get; set; }
+    public string Store_MainTitle { get; set; }
+    public string Store_Desc1 { get; set; }
+    public string Store_Desc2 { get; set; }
+    public string Donation_MainTitle { get; set; }
+    public string Donation_Desc1 { get; set; }
+    public string Contact_MainTitle { get; set; }
+    public string Contact_Desc1 { get; set; }
+    public string Contact_Email { get; set; }
+    public string Contact_Desc2 { get; set; }
+    public string Contact_Tel { get; set; }
+    public string Gallery_MainTitle { get; set; }
+    public string Gallery_Desc1 { get; set; }
+}
+
 public partial class Product
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
