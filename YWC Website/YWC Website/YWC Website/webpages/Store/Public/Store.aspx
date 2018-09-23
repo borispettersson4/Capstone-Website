@@ -118,11 +118,11 @@
  </b> 
     </p>
 </div>
-
-
+    
+    <div style="float: left; width: 100%; height: 100%; text-align: center;">
         <asp:Panel ID="panelProducts" runat="server">
         </asp:Panel>
-
+</div>
     <div style="text-align:initial">
     <p style="font-family:'Comic Sans MS'"><b>         
         <asp:Literal ID="Desc2" runat="server"></asp:Literal>
@@ -131,7 +131,7 @@
 </div>
      
 
-</asp:Content>
+ </asp:Content>
 
     
 

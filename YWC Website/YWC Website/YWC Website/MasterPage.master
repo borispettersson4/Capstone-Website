@@ -23,8 +23,8 @@
 
             if (HttpContext.Current.User.Identity.GetUserName() == "admin")
             {
-                lnkManagement.Visible = true;
                 lnkCart.Text = "admin";
+                lnkCart.NavigateUrl = "~/webpages/Management/ManagementMenu.aspx";
             }
         }
         else
@@ -32,7 +32,6 @@
             lnkLogin.Visible = true;
             lnkLogout.Visible = false;
             lnkCart.Visible = false;
-            lnkManagement.Visible = false;
         }
     }
 
@@ -45,39 +44,49 @@
     }
 </script>
 
+<script type="text/javascript">
+
+    $(document).ready(function() {      // Wait for the HTML to finish loading.
+  var resize = function() {
+    var height = $(window).height();  // Get the height of the browser window area.
+    var element = $("body");          // Find the element to resize.
+    element.height(height);           // Set the element's height.
+  }
+  resize();
+  $(window).bind("resize", resize);
+});
+
+</script>
+
 <html> 
 
 <head runat="server">
 <link type="text/css" rel="stylesheet" href="style.css">
-    <title> Test Website </title>
+    <title> Yes We Can-Ine </title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 
-<body>
-<form id="form1" runat="server">
+<body style="background-color:#e5e4d7">
+<form id="form1" runat="server" aria-orientation="horizontal">
 
-    <div id="container">
+    <div >
 
 <!--HEADER-->
-        <div class="header">
-      <!--      <img src="../../Images/Placeholder/dogspanorama.jpg" -->
-            style ="margin:0 auto;
-            width: 100%;"/> <!--100%-->
+        <div class ="mainImage">
+            <img src="/Images/recursos/banner.png" style="width: 534px; height: 98px; margin-left:35%;" />
         </div>
-
 <!--NAVIGATION BAR-->
-        <div id="nav" style="width:1080px">
+        <div id="nav" style="width:100%" >
 
-     <ul>
-        <li> <a href="/Default.aspx">Home</a>
-        <li> <a href="/webpages/Store/Public/Store.aspx">Store</a>
-        <li> <a href="/webpages/Donation/Donation.aspx">Donations</a>
-        <li> <a href="/webpages/ContactUs/Public/ContactUs.aspx">Contact Us</a>
-        <li> <a href="/webpages/Gallery/Gallery.aspx">Gallery</a>
-        <li> <asp:HyperLink ID="lnkManagement" NavigateUrl="~/webpages/Management/ManagementMenu.aspx" runat="server">Management</asp:HyperLink>
+     <ul style="width:100%">
+        <li> <a href="/Default.aspx">  Home  </a>
+        <li> <a href="/webpages/Store/Public/Store.aspx">  Store  </a>
+        <li> <a href="/webpages/Donation/Donation.aspx">  Donations  </a>
+        <li> <a href="/webpages/ContactUs/Public/ContactUs.aspx">  Contact Us  </a>
+        <li> <a href="/webpages/Gallery/Gallery.aspx">  Gallery  </a>
 
-            <li style="float:right">
+            <li style="float:center">
             <asp:HyperLink ID="lnkCart" runat="server" NavigateUrl="~/webpages/Store/Public/ShoppingCart.aspx">My Cart</asp:HyperLink>
             <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/webpages/Account/Login.aspx">Log In</asp:HyperLink>
             <asp:LinkButton ID="lnkLogout" runat="server" OnClick="lnkLogout_Click">Log Out</asp:LinkButton>
@@ -88,11 +97,22 @@
         </div>
 
         <div class="main">
+
+            <div style="width:75%; align-content:center; margin-left:15%">
             
             <asp:ContentPlaceHolder id="MainContent1" runat="server">
+                <p>
+                    <br />
+                </p>
             </asp:ContentPlaceHolder>
-
+</div>
         </div>
+
+        <body>
+ <div style="width:100%">
+  <!--some stuff-->
+ </div>
+</body>
 
     </div>
 </form>

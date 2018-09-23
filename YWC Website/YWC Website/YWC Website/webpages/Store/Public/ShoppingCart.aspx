@@ -5,6 +5,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
 
         <asp:Panel ID="pnlShoppingCart" runat="server">
+            <br />
     </asp:Panel>
         <table>
             <tr>

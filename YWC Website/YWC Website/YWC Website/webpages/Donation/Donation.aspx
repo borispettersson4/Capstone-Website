@@ -37,7 +37,7 @@
             <p>
     </p>
 
-<div style ="text-align:center">
+<div style ="text-align:center;">
 
     <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 

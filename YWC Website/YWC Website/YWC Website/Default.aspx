@@ -7,20 +7,23 @@
 
     <script runat="server">
 
-     protected void Page_Load(object sender, EventArgs e)
-     {
-         StoreEntities1 db = new StoreEntities1();
-         PageContentModel model = new PageContentModel();
-         PageContent content = model.GetPageContent();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (MainTitle.Text == "")
+            {
+                StoreEntities1 db = new StoreEntities1();
+                PageContentModel model = new PageContentModel();
+                PageContent content = model.GetPageContent();
 
-         MainTitle.Text = content.Home_MainTitle;
-         WhoAreWeText.Text = content.Home_Title2;
-         Desc2.Text = content.Home_Desc2;
-         Title3.Text = content.Home_Title3;
-         Desc3.Text = content.Home_Desc3;
-         Title4.Text = content.Home_Title4;
-         Desc4.Text = content.Home_Desc4;
-     }
+                MainTitle.Text = content.Home_MainTitle;
+                WhoAreWeText.Text = content.Home_Title2;
+                Desc2.Text = content.Home_Desc2;
+                Title3.Text = content.Home_Title3;
+                Desc3.Text = content.Home_Desc3;
+                Title4.Text = content.Home_Title4;
+                Desc4.Text = content.Home_Desc4;
+            }
+        }
 
 </script>
 
@@ -93,65 +96,23 @@ function showSlides(n)
 
 <div class="contentText">
 
-<br /> <br />   <!--Double Space-->
-
-<h1 style="text-align:center; color:chocolate">
+    <p></p>
+        <p> </p>
+    <!--Double Space--><h1 style="text-align:center; color:chocolate">
     
         <asp:Literal ID="MainTitle" runat="server"> </asp:Literal>
 
 
 </h1>
-
-<br /> 
-
-<!--Single Space-->
-<!-- Default picture
-<img src="../../Images/recursos/homepic3.png" 
-     style ="margin:0 auto;
-     width: 100%;"/>
--->
-
-<br /> <br />  <!--2 Space-->
-
-<!--2 Radio Button to see picture-->    
-<br>
-
-<!--    -->
-
-<div class="slideshow-container">
-
-<div class="mySlides fade">
-  <div class="numbertext">1 / 3</div>
-  <img src="../../Images/recursos/homepic3.png" style="width:100%">
-  <div class="text">Caption Text</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">2 / 3</div>
-  <img src="../../Images/recursos/homepic4.png" style="width:100%">
-  <div class="text">Caption Two</div>
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / 3</div>
-  <img src="../../Images/recursos/homepic5.png" style="width:100%">
-  <div class="text">Caption Three</div>
-</div>
-
-<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-<a class="next" onclick="plusSlides(1)">&#10095;</a>
-</div>
-<br>
-
-<p style="text-align:center">To see another picture select press below</p>
-
-<div style="text-align:center">
-  <span class="dot" onclick="currentSlide(1)"></span> 
-  <span class="dot" onclick="currentSlide(2)"></span> 
-  <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-
-<br />
+     <br />
+ <!-- InstaWidget -->
+<a href="https://instawidget.net/v/user/yeswecan_ine" id="link-ce80e697f0ef51a7d75b252255a1518e3edbc4fca333970ddcf9831ee1ff5675">@yeswecan_ine</a>
+<script src="https://instawidget.net/js/instawidget.js?u=ce80e697f0ef51a7d75b252255a1518e3edbc4fca333970ddcf9831ee1ff5675&width=1080px"></script>   
+     <br />
+    <div style="text-align:center   ">
+    <asp:LinkButton ID="GalleryLink" runat="server" PostBackUrl="~/webpages/Gallery/Gallery.aspx" Text="Check out our Gallery page to see more pictures."></asp:LinkButton>
+    </div>
+    <br />
 
 <div style="text-align:center">
     <h1 style="color:chocolate">
@@ -170,48 +131,31 @@ function showSlides(n)
 
 <br /> <br />  <!--Double Space-->
 <hr /> <!-- Horizontal Line -->    
-<br /> <br />  <!--2 Space-->
+    <br />
+<br /> 
+    <asp:Image ID="Image1" runat="server" Height="100px" ImageUrl="~/Images/Placeholder/heart.png" Width="114px" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:Image ID="Image2" runat="server" Height="100px" ImageUrl="~/Images/Placeholder/Store.png" Width="114px" />
+    <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:LinkButton ID="LinkButton1" runat="server" PostBackUrl="~/webpages/Donation/Donation.aspx">Donate</asp:LinkButton>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <asp:LinkButton ID="LinkButton2" runat="server" PostBackUrl="~/webpages/Store/Public/Store.aspx">Visit Our Store</asp:LinkButton>
+    <br />
+&nbsp;<br />
 
-<!-- H1 Description about the website 
- <div style="text-align:center">
-<h1 >¿Quienes Somos?</h1>
-</div>
+    <br />
 
-<div>
-    <p>
-        Somos una organización privada sin fines de lucro, registradas en el departamento de Estado de P.R 
-        desde el ano 2014 bajo el numero de licencia - 345927. Somos un grupo de jóvenes con el interes de 
-        poder resolver el problema del abandono, maltrato y sobrepoblacion de perritos en las calles de P.R
+    <div style="text-align:initial">
+    <p style="font-family:'Comic Sans MS'"> <b>
+
+       <asp:Literal ID="Literal1" runat="server" Text="Support our cause by donating to us or browse through our online store. Either way would contribute in the cause of saving lives of dogs in need."></asp:Literal>
+                                            </b>
     </p>
-
-</div>
-
--->
-
-<div class="row">
-  <div class="column">
-    <img src="../../Images/recursos/donate2.png" alt="donacion" style="width:100%">
-  </div>
-  <div class="column">
-    <img src="../../Images/recursos/ourproduct2.png" alt="productos" style="width:100%">
-  </div>
 </div>
 
 
-<div class="row">
-  <div class="column1">
-    <a href="/webpages/Donation/Donation.aspx">Donations</a>
-  </div>
-  <div class="column1">
-    <a href="/webpages/Store/Store.aspx">Store</a>
-  </div>
-</div>
-
-
-
-
-
-<br /> <br />   <!--Double Space-->
+<hr />   <!--Double Space-->
 
 <!-- H1 Description about the website's mission-->
 
@@ -257,8 +201,6 @@ function showSlides(n)
 <hr /> <!-- Horizontal Line -->
 <br /> <br />   <!--Double Space-->
 
-<br />
-<hr /> <!-- Horizontal Line -->
 <br />
     <div style="text-align:right">
     <a href="https://www.facebook.com/yeswecanine/?ref=br_rs" class="fa fa-facebook"></a>
