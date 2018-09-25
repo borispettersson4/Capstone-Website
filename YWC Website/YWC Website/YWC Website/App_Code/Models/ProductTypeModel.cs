@@ -66,4 +66,38 @@ public class ProductTypeModel
         }
     }
 
+    public List<ProductType> GetAllProductTypes()
+    {
+        try
+        {
+            using (StoreEntities1 db = new StoreEntities1())
+            {
+                List<ProductType> products = (from x in db.ProductTypes
+                                          select x).ToList();
+                return products;
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    public string[] GetAllProductNames()
+    {
+        try
+        {
+            using (StoreEntities1 db = new StoreEntities1())
+            {
+                string[] products = (from x in db.ProductTypes
+                                         select x.Name).ToArray();
+                return products;   
+            }
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
 }

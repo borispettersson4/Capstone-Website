@@ -102,7 +102,7 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
                 AutoPostBack = true,
                 ID = cart.ID.ToString()
             };
-            ddlAmount.DataBind();
+            ddlAmount.DataBind();  
             ddlAmount.SelectedValue = cart.Amount.ToString();
             ddlAmount.SelectedIndexChanged += ddlAmount_SelectedIndexChanged;
 

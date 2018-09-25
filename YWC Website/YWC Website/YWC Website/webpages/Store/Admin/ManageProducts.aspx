@@ -102,9 +102,9 @@
         {
             FileUploadImages.SaveAs(Request.PhysicalApplicationPath + "/Images/Products/" + FileUploadImages.FileName.ToString());
             litUploadStatus.Visible = true;
-            litUploadStatus.Text = "Image Uploaded successfully";
+            litUploadStatus.Text = "Image Uploaded successfully.";
             dropDownImage.DataBind();
-            Response.Redirect("~/webpages/Store/Admin/ManageProducts.aspx");
+            //Response.Redirect("~/webpages/Store/Admin/ManageProducts.aspx");
             
         }
         else
@@ -160,6 +160,8 @@
         &nbsp;<asp:Button ID="Button1" runat="server" Height="24px" OnClick="Button1_Click" Text="Add Image" Width="99px" />
             <asp:FileUpload ID="FileUploadImages" runat="server" />
         </p>
+        <p style="font-size :x-small">
+            Note : Uploading new Images would refresh the page and may result in unsaved changes being lost.</p>
         <p>
             <asp:Literal ID="litUploadStatus" runat="server"></asp:Literal>
         </p>
