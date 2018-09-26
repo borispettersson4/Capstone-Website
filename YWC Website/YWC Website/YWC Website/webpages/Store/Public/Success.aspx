@@ -3,6 +3,8 @@
 <%@ Import namespace="Microsoft.AspNet.Identity" %>
 <%@ Import namespace="Microsoft.AspNet.Identity.EntityFramework" %>
 <%@ Import namespace="Microsoft.Owin.Security" %>
+<%@ Import namespace="System.Linq" %>
+<%@ Import namespace="System.Net.Mail" %>
 
 <script runat="server">
 
@@ -21,6 +23,7 @@
             CartModel cartModel = new CartModel();
             UserInfoModel userModel = new UserInfoModel();
             ProductModel productModel = new ProductModel();
+            string productInfoList = "";
 
             try
             {
@@ -34,6 +37,8 @@
                         {
                             int newStock = product.Stock - cart.Amount;
                             productModel.UpdateStock(product.Id,newStock);
+
+                            productInfoList += product.Name + " : " + product.Price + "$" + "<p></p>";
                         }
                     }
                 }
@@ -56,10 +61,42 @@
 
                 cartModel.MarkOrdersAsPaid(carts);
 
+                //Email Send Details
+
+                //Mail Message
+
+                string subjectMessage = "";
+
+                subjectMessage = ("<html><body><b>Your payment of the following items have been recieved successfully:</b><p></p>");
+
+                subjectMessage += productInfoList;
+
+                subjectMessage += ("<p></p><p>Total Amount Paid : " + order.Total + "$" + "</p> <p></p> <p>Your order is currently being processed and will be shipped soon. If you have any questions about your purchase, please reply to this email.</p> </body> </html>");
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new System.Net.NetworkCredential("yeswecanine.mail@gmail.com", "Yeswecanine")
+                };
+                using (var message = new MailMessage("yeswecanine.mail@gmail.com", order.ClientEmail)
+                {
+                    Subject = "Thank you for your purchase",
+                    Body = string.Format(subjectMessage),
+                    IsBodyHtml = true //optional
+                })
+                {
+                    smtp.Send(message);
+                }
+
+
 
                 //   }
 
-            }catch(Exception ex)
+        }catch(Exception ex)
             {
                 Label1.Text = "An Error Occured. Please Try Again Later. " + ex;
             }

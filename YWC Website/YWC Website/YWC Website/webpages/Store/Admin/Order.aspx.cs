@@ -190,27 +190,14 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
         CartModel cartModel = new CartModel();
 
         List<Cart> cartList = new List<Cart>();
-
+         
         if (!String.IsNullOrWhiteSpace(Request.QueryString["id"]))
         {
             int id = Convert.ToInt32(Request.QueryString["id"]);
             OrderDetail order = orderModel.GetOrder(id);
 
             //Send Email to Client
-            System.Net.Mail.SmtpClient smtpClient = new SmtpClient("mail.MyWebsiteDomainName.com", 25);
-
-            smtpClient.Credentials = new System.Net.NetworkCredential("info@MyWebsiteDomainName.com", "myIDPassword");
-            smtpClient.UseDefaultCredentials = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.EnableSsl = true;
-            MailMessage mail = new MailMessage();
-
-            //Setting From , To and CC
-            mail.From = new MailAddress("info@MyWebsiteDomainName", "MyWeb Site");
-            mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
-            mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
-
-            //smtpClient.Send(mail);
+            sendEmail(order.ClientEmail);
 
             OrderDetail updatedOrder = order;
 
@@ -220,6 +207,34 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
             
             Response.Redirect("~/webpages/Store/Admin/OrdersManagement.aspx");
 
+        }
+    }
+
+    void sendEmail(string email)
+    {
+        string subjectMessage = "";
+
+        subjectMessage = ("<html><body><b>Your order has been shipped!</b><p></p>");
+
+        subjectMessage += ("<p></p><p>Your package is on it's way to your address" + "</p> <p></p> <p>The tracking ID number is : <h3>" + textBoxTracking.Text + "</h3></p>" + " </p> <p></p> <p>Thank you for shopping with us! If you have any feedback from your product, please let us know!</p> </body> </html>");
+
+        var smtp = new SmtpClient
+        {
+            Host = "smtp.gmail.com",
+            Port = 587,
+            EnableSsl = true,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new System.Net.NetworkCredential("yeswecanine.mail@gmail.com", "Yeswecanine")
+        };
+        using (var message = new MailMessage("yeswecanine.mail@gmail.com", email)
+        {
+            Subject = "Thank you for your purchase",
+            Body = string.Format(subjectMessage),
+            IsBodyHtml = true //optional
+        })
+        {
+            smtp.Send(message);
         }
     }
 
