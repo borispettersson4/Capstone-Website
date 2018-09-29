@@ -10,7 +10,7 @@
         UserStore<IdentityUser> userStore = new UserStore<IdentityUser>();
         userStore.Context.Database.Connection.ConnectionString =
         System.Configuration.ConfigurationManager.ConnectionStrings["StoreConnectionString"].ConnectionString;
-
+   
         UserManager<IdentityUser> manager = new UserManager<IdentityUser>(userStore);
 
         var user = manager.Find(textUserName.Text, textPassword.Text);

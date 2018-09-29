@@ -24,7 +24,7 @@
             if (HttpContext.Current.User.Identity.GetUserName() == "admin")
             {
                 lnkCart.Text = "admin";
-                lnkCart.NavigateUrl = "~/webpages/Management/ManagementMenu.aspx";
+                lnkCart.NavigateUrl = "~/webpages/Store/Admin/ManagementMenu.aspx";
             }
         }
         else

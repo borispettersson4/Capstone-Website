@@ -4,7 +4,7 @@
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         PageContentModel model = new PageContentModel();
         PageContent content = model.GetPageContent();
 

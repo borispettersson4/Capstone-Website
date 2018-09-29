@@ -14,7 +14,7 @@ public class UserInfoModel
 
     public UserInformation GetUserInformation(string guid)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         UserInformation info = (from x in db.UserInformations
                                 where x.GUid == guid
                                 select x).FirstOrDefault();
@@ -24,7 +24,7 @@ public class UserInfoModel
 
     public void InsertUserInformation(UserInformation info) 
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         db.UserInformations.Add(info);
         db.SaveChanges();
     }

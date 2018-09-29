@@ -41,7 +41,7 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
 
     private void GetAllOrders()
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         OrderModel orderModel = new OrderModel();
         CartModel cartModel = new CartModel();
 
@@ -185,7 +185,7 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
 
     protected void buttonSend_Click(object sender, EventArgs e)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         OrderModel orderModel = new OrderModel();
         CartModel cartModel = new CartModel();
 
@@ -240,7 +240,7 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
 
     protected void lnkDeleteOrder_Click(object sender, EventArgs e)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         OrderModel orderModel = new OrderModel();
         int id = Convert.ToInt32(Request.QueryString["id"]);
         OrderDetail order = orderModel.GetOrder(id);

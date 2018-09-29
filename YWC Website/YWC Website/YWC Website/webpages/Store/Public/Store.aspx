@@ -14,7 +14,7 @@
             string sortId = Request.QueryString["id"];
         }
 
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         PageContentModel model = new PageContentModel();
         PageContent content = model.GetPageContent();
 
@@ -29,7 +29,7 @@
     {
         string userId = User.Identity.GetUserId();
         //Get list of products
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         ProductModel productModel = new ProductModel();
         ProductTypeModel productTypeModel = new ProductTypeModel();
         CartModel cartModel = new CartModel();

@@ -13,7 +13,7 @@ public class ProductTypeModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             db.ProductTypes.Add(productType);
             db.SaveChanges();
 
@@ -29,7 +29,7 @@ public class ProductTypeModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
 
             //Fetch an object from db
             ProductType p = db.ProductTypes.Find(id);
@@ -51,7 +51,7 @@ public class ProductTypeModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             ProductType productType = db.ProductTypes.Find(id);
 
             db.ProductTypes.Attach(productType);
@@ -70,7 +70,7 @@ public class ProductTypeModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 List<ProductType> products = (from x in db.ProductTypes
                                           select x).ToList();
@@ -87,7 +87,7 @@ public class ProductTypeModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 string[] products = (from x in db.ProductTypes
                                          select x.Name).ToArray();

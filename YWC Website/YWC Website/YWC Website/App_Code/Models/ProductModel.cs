@@ -13,7 +13,7 @@ public class ProductModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             db.Products.Add(product);
             db.SaveChanges();
 
@@ -29,7 +29,7 @@ public class ProductModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
 
             //Fetch an object from db
             Product p = db.Products.Find(id);
@@ -56,7 +56,7 @@ public class ProductModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             Product product = db.Products.Find(id);
 
             db.Products.Attach(product);
@@ -75,7 +75,7 @@ public class ProductModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 Product product = db.Products.Find(id);
                 return product;
@@ -91,7 +91,7 @@ public class ProductModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 List<Product> products = (from x in db.Products
                                           select x).ToList();
@@ -108,7 +108,7 @@ public class ProductModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 List<Product> products = (from x in db.Products
                                           where x.TypeId == typeId
@@ -126,7 +126,7 @@ public class ProductModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 Product product = db.Products.Find(id);
                 product.Stock = x;

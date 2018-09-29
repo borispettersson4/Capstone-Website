@@ -11,13 +11,14 @@ public class PageContentModel
 
     public PageContent GetPageContent()
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         return db.PageContents.Find(0);
+        
     }
 
     public void UpdateInfo(PageContent content)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
 
         PageContent page = db.PageContents.Find(0);
 
@@ -45,7 +46,7 @@ public class PageContentModel
 
     public void addNewPageConent()
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         PageContent page = new PageContent();
 
         db.PageContents.Add(page);

@@ -12,7 +12,7 @@ public class CartModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             db.Carts.Add(cart);
             db.SaveChanges();
 
@@ -28,7 +28,7 @@ public class CartModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
 
             //Fetch an object from db
             Cart p = db.Carts.Find(id);
@@ -54,7 +54,7 @@ public class CartModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             Cart cart = db.Carts.Find(id);
 
             db.Carts.Attach(cart);
@@ -71,7 +71,7 @@ public class CartModel
 
     public List<Cart> GetOrdersInCart(string userId)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         List<Cart> orders = (from x in db.Carts
                              where x.ClientID == userId
                              && x.IsInCart
@@ -83,7 +83,7 @@ public class CartModel
 
     public Product FindProduct(int id)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         ProductModel model = new ProductModel();
         Product product = new Product();
 
@@ -102,7 +102,7 @@ public class CartModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             int amount = (from x in db.Carts
                           where x.ClientID == userId
                           && x.IsInCart
@@ -118,7 +118,7 @@ public class CartModel
 
     public void UpdateQuantity(int id, int quantity)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         Cart cart = db.Carts.Find(id);
         cart.Amount = quantity;
 
@@ -127,7 +127,7 @@ public class CartModel
 
     public void MarkOrdersAsPaid(List<Cart> carts)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         if(carts != null)
         {
             foreach(Cart cart in carts)

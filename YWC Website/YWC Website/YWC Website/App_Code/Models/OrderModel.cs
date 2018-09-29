@@ -12,7 +12,7 @@ public class OrderModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             db.OrderDetails.Add(order);
             db.SaveChanges();
 
@@ -41,7 +41,7 @@ public class OrderModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
 
             //Fetch an object from db
             OrderDetail o = db.OrderDetails.Find(id);
@@ -68,7 +68,7 @@ public class OrderModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             OrderDetail order = db.OrderDetails.Find(id);
 
             db.OrderDetails.Attach(order);
@@ -85,7 +85,7 @@ public class OrderModel
 
     public List<OrderDetail> GetOrders(string userId)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         List<OrderDetail> orders = (from x in db.OrderDetails
                              where x.ClientID == userId
                              && x.Status != "SENT"
@@ -99,7 +99,7 @@ public class OrderModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 OrderDetail order = db.OrderDetails.Find(id);
                 return order;
@@ -114,7 +114,7 @@ public class OrderModel
 
     public List<OrderDetail> GetAllOrders()
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         List<OrderDetail> orders = (from x in db.OrderDetails
                                     where x.Status != "SENT"
                                     orderby x.DatePurchased
@@ -125,7 +125,7 @@ public class OrderModel
 
     public List<OrderDetail> GetAllUniqueOrders()
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         List<OrderDetail> orders = (from x in db.OrderDetails
                                     orderby x.DatePurchased descending
                                     select x).Distinct().ToList();
@@ -137,7 +137,7 @@ public class OrderModel
     {
         try
         {
-            StoreEntities1 db = new StoreEntities1();
+            YWC_StorageEntities db = new YWC_StorageEntities();
             int amount = (from x in db.Carts
                           where x.ClientID == userId
                           && x.IsInCart
@@ -153,7 +153,7 @@ public class OrderModel
 
     public void MarkOrderAsSent(OrderDetail order)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
 
         if(order != null)
         {
@@ -169,7 +169,7 @@ public class OrderModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 OrderDetail order = db.OrderDetails.Find(id);
                 return order;
@@ -185,7 +185,7 @@ public class OrderModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 List<OrderDetail> orders = (from x in db.OrderDetails
                                           select x).ToList();
@@ -202,7 +202,7 @@ public class OrderModel
     {
         try
         {
-            using (StoreEntities1 db = new StoreEntities1())
+            using (YWC_StorageEntities db = new YWC_StorageEntities())
             {
                 List<OrderDetail> orders = (from x in db.OrderDetails
                                           where x.isSent == b

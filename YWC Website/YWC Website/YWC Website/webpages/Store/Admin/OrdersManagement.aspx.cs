@@ -14,7 +14,7 @@ public partial class webpages_Store_Admin_OrdersManagement : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        StoreEntities1 db = new StoreEntities1();
+        YWC_StorageEntities db = new YWC_StorageEntities();
         OrderModel orderModel = new OrderModel();
 
         //Get all purchases for current user and display in table

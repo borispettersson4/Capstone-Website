@@ -166,7 +166,7 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
     {
         //Set Paypal parameters
         string paypal = string.Format(
-            @"<script async='async' src='https://www.paypalobjects.com/js/external/paypal-button.min.js?borispettersson4@gmail.com' 
+            @"<script async='async' src='https://www.paypalobjects.com/js/external/paypal-button.min.js?yeswecan_ine@yahoo.com' 
                 data-button='buynow' 
                 data-name='Garage Purchases' 
                 data-quantity=1

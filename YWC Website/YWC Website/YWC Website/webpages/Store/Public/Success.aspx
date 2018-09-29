@@ -53,8 +53,6 @@
                     CartID = carts.ElementAt(0).ID,
                     Total = Convert.ToDouble(Session["total"].ToString()),
                     ClientEmail = userModel.GetUserInformation(clientID).Email
-
-
                 };
 
                 Label1.Text = orderModel.InsertOrder(order);
@@ -72,6 +70,9 @@
                 subjectMessage += productInfoList;
 
                 subjectMessage += ("<p></p><p>Total Amount Paid : " + order.Total + "$" + "</p> <p></p> <p>Your order is currently being processed and will be shipped soon. If you have any questions about your purchase, please reply to this email.</p> </body> </html>");
+
+
+                //Send Client EMail
 
                 var smtp = new SmtpClient
                 {
@@ -92,9 +93,35 @@
                     smtp.Send(message);
                 }
 
+                //Send Owner Email
+                
+                string subjectMessage2 = "";
 
+                subjectMessage2 = ("<html><body><b>The following items have been purchased</b><p></p>");
 
-                //   }
+                subjectMessage2 += productInfoList;
+
+                subjectMessage2 += ("<p></p><p>Total Amount Paid : " + order.Total + "$" + "</p> <p></p> <p>This order is now pending further action. Please visit the administration controls to view more details.</p> </body> </html>");
+
+                var smtp2 = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new System.Net.NetworkCredential("yeswecanine.mail@gmail.com", "Yeswecanine")
+                };
+                using (var message = new MailMessage("yeswecanine.mail@gmail.com", "yeswecan_ine@yahoo.com")
+                {
+                    Subject = "You have a new order!",
+                    Body = string.Format(subjectMessage2),
+                    IsBodyHtml = true //optional
+                })
+                {
+                    smtp2.Send(message);
+                }
+
 
         }catch(Exception ex)
             {
