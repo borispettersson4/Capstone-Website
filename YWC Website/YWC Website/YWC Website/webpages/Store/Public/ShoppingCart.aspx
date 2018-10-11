@@ -30,7 +30,7 @@
                     <b>Shipping: </b>
                 </td>
                 <td>
-                    $ 15
+                    <asp:Literal ID="litShipping" runat="server" Text="" />
                 </td>
             </tr>
 
@@ -47,7 +47,7 @@
                 <td>
                     <br />
                     <asp:LinkButton ID="btnContinue" runat="server" PostBackUrl="~/webpages/Store/Public/Store.aspx">Continue Shopping</asp:LinkButton> &nbsp;&nbsp; or                     
-                    <asp:Button ID="btnCheckout" runat="server" Text="Check Out" CssClass="button" Width="250px" OnClick="btnCheckout_Click" />
+                    <asp:Button ID="btnCheckout" runat="server" Text="Check Out" CssClass="button" Width="250px" OnClick="btnCheckout_Click" BackColor="#C06C30" />
 
                     <br />
 

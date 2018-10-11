@@ -8,8 +8,17 @@ using System.Web.UI.WebControls;
 
 public partial class webpages_Store_Admin_Order : System.Web.UI.Page
 {
+
+    double tax;
+    double shipping;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        TaxShippingModel model = new TaxShippingModel();
+
+        tax = Convert.ToDouble(model.GetTaxShipping().Tax);
+        shipping = Convert.ToDouble(model.GetTaxShipping().Shipping);
+
         //Get order data
         GetAllOrders();
     }
@@ -66,12 +75,13 @@ public partial class webpages_Store_Admin_Order : System.Web.UI.Page
             CreateOrderTable(cartList, out subTotal);
 
             //Add totals to webpage
-            double vat = subTotal * 0.11;
-            double totalAmount = subTotal + 15 + vat;
+            double vat = subTotal * tax / 100;
+            double totalAmount = subTotal + shipping + vat;
 
             litTotal.Text = "$ " + subTotal;
             litVat.Text = "$ " + vat;
             litTotalAmount.Text = "$ " + totalAmount;
+            litShipping.Text = "$ " + shipping;
 
             litClientName.Text = order.ClientName.ToString();
             litClientEmail.Text = order.ClientEmail;

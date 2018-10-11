@@ -44,7 +44,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent1" Runat="Server">
         <p>
-            <br />
+            &nbsp;</p>
+        <p>
+            Log In or create a new account with Yes We Can-Ine to make purchases on our online store!<br />
         </p>
         <p>
             <asp:Literal ID="literalStatus" runat="server"></asp:Literal>
@@ -60,12 +62,12 @@
             <asp:TextBox ID="textPassword" runat="server" CssClass="inputs" TextMode="Password"></asp:TextBox>
         </p>
         <p>
-            <asp:Button ID="buttonLogIn" runat="server" CssClass="button" OnClick="buttonLogIn_Click" Text="Log In" />
+            <asp:Button ID="buttonLogIn" runat="server" CssClass="button" OnClick="buttonLogIn_Click" Text="Log In" BackColor="#C06C30" />
         </p>
         <p>
             Don't have an account? Create a new one here!</p>
         <p>
-            <asp:Button ID="buttonRegister" runat="server" CssClass="button" OnClick="buttonRegister_Click" Text="Register New Account" />
+            <asp:Button ID="buttonRegister" runat="server" CssClass="button" OnClick="buttonRegister_Click" Text="Register New Account" BackColor="#C06C30" />
         </p>
 </asp:Content>
 

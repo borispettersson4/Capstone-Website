@@ -22,6 +22,7 @@
         <AssociationConnector Association="YWC_StorageModel.FK_OrderDetails_Cart" ManuallyRouted="false" />
         <AssociationConnector Association="YWC_StorageModel.FK_Product_ProductTypes" ManuallyRouted="false" />
         <AssociationConnector Association="YWC_StorageModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="YWC_StorageModel.TaxShipping" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

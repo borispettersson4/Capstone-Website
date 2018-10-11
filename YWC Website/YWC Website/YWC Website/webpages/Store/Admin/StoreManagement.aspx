@@ -28,11 +28,50 @@
     {
         try
         {
-            
+
         }
         catch (Exception ex) { }
     }
 
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (TaxTextBox.Text == "")
+        {
+            TaxShippingModel model = new TaxShippingModel();
+
+            TaxTextBox.Text = "" + model.GetTaxShipping().Tax;
+            ShippingTextBox.Text = "" + model.GetTaxShipping().Shipping;
+        }
+
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            YWC_StorageEntities db = new YWC_StorageEntities();
+            TaxShippingModel model = new TaxShippingModel();
+            string newTax;
+            string newShipping;
+
+            newTax = TaxTextBox.Text;
+            newShipping = ShippingTextBox.Text;
+
+            TaxShipping tasShip = new TaxShipping();
+
+            tasShip.Tax = Convert.ToDouble(newTax).ToString();
+            tasShip.Shipping = Convert.ToDouble(newShipping).ToString();
+
+            model.UpdateInfo(tasShip);
+
+            Literal1.Text = "Changes Saved Successfully : Tax = " + tasShip.Tax + " Shipping = " + tasShip.Shipping;
+        }
+
+        catch(Exception ex2)
+        {
+            Literal1.Text = "ERROR : " + ex2;
+        }
+    }
 </script>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
@@ -135,6 +174,21 @@
                 <asp:Parameter Name="Id" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
+        <br />
+        Tax Amount :<br />
+        <br />
+        <asp:TextBox ID="TaxTextBox" runat="server" Width="180px"></asp:TextBox>
+        <br />
+        <br />
+        Shipping Price :<br />
+        <br />
+        <asp:TextBox ID="ShippingTextBox" runat="server" Width="179px"></asp:TextBox>
+        <br />
+        <br />
+        <asp:Button ID="Button1" runat="server" CssClass="button" Text="Save Changes" OnClick="Button1_Click" />
+        <br />
+        <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+        <asp:SqlDataSource ID="taxsource" runat="server"></asp:SqlDataSource>
         <br />
 </asp:Content>
 

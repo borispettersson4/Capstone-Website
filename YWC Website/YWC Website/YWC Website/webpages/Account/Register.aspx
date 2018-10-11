@@ -82,6 +82,8 @@
         <p>
             &nbsp;</p>
         <p>
+            Enter your basic information below! Make sure your details are correct and when ready, press the below &quot;Create Account&quot; button to register with us!</p>
+        <p>
             <asp:Literal ID="literalStatus" runat="server"></asp:Literal>
             <br />
         </p>
@@ -124,7 +126,7 @@
             <asp:TextBox ID="textConfirmPassord" runat="server" CssClass="inputs" TextMode="Password"></asp:TextBox>
         </p>
         <p>
-            <asp:Button ID="Button1" runat="server" CssClass="button" OnClick="Button1_Click" Text="Create Account" />
+            <asp:Button ID="Button1" runat="server" CssClass="button" OnClick="Button1_Click" Text="Create Account" BackColor="#C06C30" />
         </p>
 </asp:Content>
 

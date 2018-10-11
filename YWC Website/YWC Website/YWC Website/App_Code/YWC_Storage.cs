@@ -178,6 +178,13 @@ public partial class ProductType
     public virtual ICollection<Product> Products { get; set; }
 }
 
+public partial class TaxShipping
+{
+    public int Id { get; set; }
+    public string Tax { get; set; }
+    public string Shipping { get; set; }
+}
+
 public partial class UserInformation
 {
     public int Id { get; set; }

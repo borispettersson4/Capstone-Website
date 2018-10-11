@@ -31,7 +31,7 @@
                     <b>Shipping: </b>
                 </td>
                 <td>
-                    $ 15
+                    <asp:Literal ID="litShipping" runat="server" Text="" />
                 </td>
             </tr>
 

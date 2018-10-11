@@ -129,7 +129,7 @@
                 <asp:Label ID="labelPrice" runat="server" CssClass="detailsPrice"></asp:Label><br/>
                 Quantity :
                 <asp:DropDownList ID="dropdownAmount" runat="server"></asp:DropDownList><br/>
-                <asp:Button ID="buttonAdd" runat="server" OnClick="buttonAdd_Click" Text="Add Product" />
+                <asp:Button ID="buttonAdd" runat="server" OnClick="buttonAdd_Click" Text="Add to Cart" BackColor="#C06C30" CssClass="button" />
                 <br/>
                 <asp:Label ID="labelResult" runat="server" Text=""></asp:Label></td>
             

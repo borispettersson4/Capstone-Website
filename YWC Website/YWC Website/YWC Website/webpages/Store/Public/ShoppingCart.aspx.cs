@@ -11,8 +11,16 @@ using Microsoft.Owin.Security;
 
 public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
 {
+    double tax;
+    double shipping;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        TaxShippingModel model = new TaxShippingModel();
+
+        tax = Convert.ToDouble(model.GetTaxShipping().Tax);
+        shipping = Convert.ToDouble(model.GetTaxShipping().Shipping);
+
         //Check if user is logged in
         string userId = User.Identity.GetUserId();
 
@@ -55,12 +63,13 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
         CreateShopTable(purchaseList, out subTotal);
 
         //Add totals to webpage
-        double vat = subTotal * 0.11;
-        double totalAmount = subTotal + 15 + vat;
+        double vat = subTotal * tax/100;
+        double totalAmount = subTotal + shipping + vat;
 
         litTotal.Text = "$ " + subTotal;
         litVat.Text = "$ " + vat;
         litTotalAmount.Text = "$ " + totalAmount;
+        litShipping.Text = "$ " + shipping;
         Session["total"] = totalAmount.ToString();
 
         //Add paypal button to checkout
@@ -172,11 +181,11 @@ public partial class webpages_Store_Public_ShoppingCart : System.Web.UI.Page
                 data-quantity=1
                 data-amount='{0}' 
                 data-tax='{1}'
-                data-shipping='15'
+                data-shipping=''
                 data-callback='http://localhost:50992/Pages/Success.aspx'
                 data-sendback='http://localhost:50992/Pages/Success.aspx'
                 data-env='sandbox'>
-             </script>", subTotal, (subTotal * 0.11));
+             </script>", subTotal, (subTotal * tax));
 
         return paypal;
     }
